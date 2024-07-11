@@ -45,4 +45,24 @@ def random_col(is_vertical, size):
     else:
         return randint(0, SIZE - 1)
     
-        
+def is_ocean(row, col, b):
+    if row < 0 or row >= SIZE:
+        return 0
+    elif col < 0 or col >= SIZE:
+        return 0
+    if b[row][col] == OCEAN:
+        return 1
+    else:
+        return 0
+
+def is_oceanin(row, col, b):
+    if type(row) is not int or type(col) is not int:
+        return 0
+    if row < 0 or row >= SIZE:
+        return 0
+    elif col < 0 or col >= SIZE:
+        return 0
+    if b[row][col] == OCEAN:
+        return 1
+    else:
+        return 0
