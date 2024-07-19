@@ -110,9 +110,28 @@ def place_ships(size, board, set_ship = None):
                     number_board[ship_row][ship_col-p-1] = set_ship
         return board
     
+def ship_number(r,c):
+    if is_ocean(r,c, number_board):
+        return -1
+    return SHIPS[number_board[r][c]]
 
+def ship_sunk():
+    if total_hits.count(total_hits[0]) == ship_length[0]:
+        return 1
+    return 0    
+
+#Init the Boards
 player_radar = copy.deepcopy(SEA)
 player_board = copy.deepcopy(SEA)
 ai_radar = copy.deepcopy(SEA)
 ai_board = copy.deepcopy(SEA)
 number_board = copy.deepcopy(SEA)
+
+#Place the Ships on the player and the AI's Board
+for x in range(len(SHIPS)):
+    player_board = place_ships(SHIPS[x], player_board, x)
+    ai_board = place_ships(SHIPS[x], ai_board)
+
+#Define the main game loop
+print("Lets Play Battleships!!")
+print_board()
