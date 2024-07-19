@@ -26,6 +26,7 @@ ship_length = []
 for x in range(SIZE):
     SEA.append([OCEAN] * SIZE)
 
+#Define a function to print the board the player will use
 def print_board():
     numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     print(" 0 1 2 3 4 5 6 7 8 9 || 0 1 2 3 4 5 6 7 8 9")
@@ -33,18 +34,21 @@ def print_board():
     for row in range(SIZE):
         print(i, " ".join(player_radar[row]), "||", " ".join(player_board[row]))
 
+#Generate a Random row to place the ship
 def random_row(is_vertical, size):
     if is_vertical:
         return randint(0, SIZE - size)
     else:
         return randint(0, SIZE - 1)
 
+#Generate a Random Column to place the ship
 def random_col(is_vertical, size):
     if is_vertical:
         return randint(0, SIZE - size)
     else:
         return randint(0, SIZE - 1)
     
+#Check if the given row and col is an ocean space
 def is_ocean(row, col, b):
     if row < 0 or row >= SIZE:
         return 0
@@ -66,3 +70,49 @@ def is_oceanin(row, col, b):
         return 1
     else:
         return 0
+
+#Define a function to place the ships on the board
+def place_ships(size, board, set_ship = None):
+    is_vertical = randint(0, 1)
+    occupied = True
+    while(occupied):
+        occupied = False
+        ship_row = random_row(is_vertical, size)
+        ship_col = random_col(is_vertical, size)
+        if is_vertical:
+            for p in range(size):
+                if not is_ocean(ship_row+p, ship_col, board):
+                    occupied = True
+        else:
+            for p in range(size):
+                if not is_ocean(ship_row, ship_col-p, board):
+                    occupied = True
+        
+        if is_vertical:
+            board[ship_row][ship_col] = "^"
+            board[ship_row + size-1][ship_col] = "v"
+            if set_ship != None:
+                number_board[ship_row][ship_col] = set_ship
+                number_board[ship_row+ size - 1][ship_col] = set_ship
+            for p in range(size - 2):
+                board[ship_row + p + 1][ship_col] = "+"
+                if set_ship != None:
+                    number_board[ship_row + p + 1][ship_col] = set_ship
+        else:
+            board[ship_row][ship_col] = ">"
+            board[ship_row][ship_col - size + 1] = set_ship
+            if set_ship != None:
+                number_board[ship_row][ship_col] = set_ship
+                number_board[ship_row][ship_col - size + 1] = set_ship
+            for p in range(size - 2):
+                board[ship_row][ship_col-size+1] = "+"
+                if set_ship != None:
+                    number_board[ship_row][ship_col-p-1] = set_ship
+        return board
+    
+
+player_radar = copy.deepcopy(SEA)
+player_board = copy.deepcopy(SEA)
+ai_radar = copy.deepcopy(SEA)
+ai_board = copy.deepcopy(SEA)
+number_board = copy.deepcopy(SEA)
