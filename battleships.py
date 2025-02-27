@@ -5,13 +5,13 @@ import copy
 def get_board_size():
     while True:
         try:
-            rows = int(input("Enter the number of rows (minimum 5): "))
-            if rows < 5:
-                print("Error: The number of rows must be at least 5.")
+            rows = int(input("Enter the number of rows (minimum 6): "))
+            if rows < 6:
+                print("Error: The number of rows must be at least 6.")
                 continue
             cols = int(input("Enter the number of columns: "))
-            if cols < 5:
-                print("Error: The number of columns must be at least 5.")
+            if cols < 6:
+                print("Error: The number of columns must be at least 6.")
                 continue
             return rows, cols
         except ValueError:
