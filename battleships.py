@@ -134,6 +134,11 @@ def ship_number(r,c):
         return -1
     return SHIPS[number_board[r][c]]
 
+def ship_sunk():
+    if total_hits.count(total_hits[0]) == ship_length[0]:
+        return 1
+    return 0    
+
 # Init the Boards
 player_radar = copy.deepcopy(SEA)
 player_board = copy.deepcopy(SEA)
@@ -209,9 +214,86 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 ai_radar[ai_row_guess][ai_col_guess] = FIRE
                 print("\nThe Enemy Missed!!")
         else:
-            # [Code continues from where you left off]
-            # The rest of the logic goes here...
-            pass
+            if orientation == -1:
+                print("Ship has no orientation")
+                if is_ocean(ship_position[0]+1, ship_position[1], ai_radar):
+                    ai_row_guess = ship_position[0] + 1
+                    ai_col_guess = ship_position[1]
+                elif is_ocean(ship_position[0] - 1, ship_position[1], ai_radar):
+                    ai_row_guess = ship_position[0] - 1
+                    ai_col_guess = ship_position[1]
+                elif is_ocean(ship_position[0], ship_position[1] - 1, ai_radar):
+                    ai_row_guess = ship_position[0]
+                    ai_col_guess = ship_position[1] - 1
+                else:
+                    ai_row_guess = ship_position[0]
+                    ai_col_guess = ship_position[1 + 1]
+            elif orientation:
+                for item in ai_radar:
+                    print(item[0], ' '.join(map(str, item[1:])))
+                if is_ocean(ai_row_guess + 1, ai_col_guess, ai_radar) and not miss:
+                    ai_row_guess += 1
+                else:
+                    ai_row_guess -= 1
+                    while not is_ocean(ai_row_guess, ai_col_guess, ai_radar):
+                        ai_row_guess -= 1
+            
+            else:
+                for item in ai_radar:
+                    print(item[0], ' '.join(map(str, item[1:])))
+                if is_ocean(ai_row_guess, ai_col_guess - 1, ai_radar) and not miss:
+                    ai_col_guess = ai_col_guess - 1
+                else:
+                    ai_col_guess = ai_col_guess + 1
+                    while not is_ocean(ai_row_guess, ai_col_guess, ai_radar):
+                        ai_col_guess += 1
+
+            if not is_ocean(ai_row_guess, ai_col_guess, player_board):
+                player_board[ai_row_guess][ai_col_guess] = HIT
+                ai_radar[ai_row_guess][ai_col_guess] = HIT
+                total_hits.append(number_board[ai_row_guess][ai_col_guess])
+                player_ship_lives -= 1
+                
+                if total_hits.count(total_hits[0]) == 2 and ship_number(ai_row_guess, ai_col_guess) == ship_number(ship_position[0], ship_position[1]):
+                    if ai_col_guess != ship_position[1]:
+                        orientation = 0
+                    else:
+                        orientation = 1
+                    print("New Orientation: ", orientation)
+                elif total_hits[0] != number_board[ai_row_guess][ai_col_guess]:
+                    ship_length.append((ship_number(ai_row_guess, ai_col_guess)))
+                    ship_position.extend([ai_row_guess, ai_col_guess])
+                if player_ship_lives:
+                    miss = 0
+                    print("Captain We've Been Hit!!")
+                else:
+                    print("We're going down, Abandon Ship!!")
+                    print_board()
+                    print("\n-------------------------------------------------------\n")
+                    play_again = input("You Lose!! Would you like to play again y/n?: ")
+                    if play_again == "y":
+                        main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, total_hits, miss)
+                        break
+                    else:
+                        exit()
+                    break
+            else:
+                miss = 1
+                player_board[ai_row_guess][ai_col_guess] = FIRE
+                ai_radar[ai_row_guess][ai_col_guess] = FIRE
+                print("\nThe Enemy Missed!!")
+            if ship_sunk():
+                orientation = -1
+                ship_position.pop(0)
+                ship_position.pop(0)
+                ship_length.pop(0)
+                t = total_hits[0]
+                for x in range(total_hits.count(t)):
+                    total_hits.remove(t)
+                if len(ship_length) != 0:
+                    miss = 0
+                else:
+                    miss = 1
         print_board()
 
 print("Lets Play Battleships!!")
