@@ -1,6 +1,31 @@
 from random import randint
 import copy
 
+rows = 10
+cols = 10
+
+#Setting up the Constants and variables
+OCEAN = "O" #icon for the ocean spaces
+FIRE = "X" # icon for a miss
+HIT = "*" #icon for a hit
+SHIPS = [5, 4, 3, 3, 2] # size of each of the ships
+SEA = [] #empty list for the sea
+
+orientation = -1 # stores the ships hit orientation.
+total_hits = [] #stores the ship number everytime the bot hits a ship
+miss = 1 #stores whether the last ai shot was a miss
+
+player_ship_lives = 17 #the amount of lives for the player equal to the ships
+ship_position = [] 
+ship_length = []
+
+player_radar = []
+player_board = []
+ai_ship_lives = 17 #the Ai lives equal to the ship parts
+ai_radar = []
+ai_board = []
+ai_ship_lives = 17 #the Ai lives equal to the ship parts
+
 def main_menu():
     while True:
         print("""
@@ -30,6 +55,7 @@ def main_menu():
         choice = input("Enter your choice (1 or 2): ")
         
         if choice == "1":
+            get_board_size()
             main_game(player_ship_lives, player_board, player_radar, 
                       ai_ship_lives, ai_board, ai_radar, 
                       ship_length, ship_position, orientation, 
@@ -42,76 +68,101 @@ def main_menu():
 
 # Prompt the user for the number of rows and columns
 def get_board_size():
+    global rows
+    global cols
+    global player_radar
+    global player_board
+    global ai_radar
+    global ai_board
     while True:
         try:
-            rows = int(input("Enter the number of rows (minimum 6): "))
-            if rows < 6:
-                print("Error: The number of rows must be at least 6.")
-                continue
-            cols = int(input("Enter the number of columns: "))
-            if cols < 6:
-                print("Error: The number of columns must be at least 6.")
-                continue
-            return rows, cols
+            numOfGrid = int(input("""
+            Please pick the size of your grid and difficulty
+            1. 5x5 (Very Easy)
+            2. 6x6 (Easy)
+            3. 7x7 (Medium)
+            4. 8x8 (Hard)
+            5. 9x9 (Very Hard)
+            6. 10x10 (Super Hard!)
+            """))
+            if numOfGrid == 1:
+                rows = 5
+                cols = 5
+                print(rows, cols)
+                player_radar = [['O'] * cols for _ in range(rows)]
+                player_board = [['O'] * cols for _ in range(rows)]
+                ai_radar = [['O'] * cols for _ in range(rows)]
+                ai_board = [['O'] * cols for _ in range(rows)]
+                return rows, cols
+            elif numOfGrid == 2:
+                rows = 6
+                cols = 6
+                print(rows, cols)
+                player_radar = [['O'] * cols for _ in range(rows)]
+                player_board = [['O'] * cols for _ in range(rows)]
+                ai_radar = [['O'] * cols for _ in range(rows)]
+                ai_board = [['O'] * cols for _ in range(rows)]
+                return rows, cols
+            elif numOfGrid == 3:
+                rows = 7
+                cols = 7
+                print(rows, cols)
+                player_radar = [['O'] * cols for _ in range(rows)]
+                player_board = [['O'] * cols for _ in range(rows)]
+                ai_radar = [['O'] * cols for _ in range(rows)]
+                ai_board = [['O'] * cols for _ in range(rows)]
+                return rows, cols
+            elif numOfGrid == 4:
+                rows = 8
+                cols = 8
+                print(rows, cols)
+                return rows, cols
+            elif numOfGrid == 5:
+                rows = 9
+                cols = 9
+                print(rows, cols)
+                return rows, cols
+            elif numOfGrid == 6:
+                rows = 10
+                cols = 10
+                print(rows, cols)
+                return rows, cols
+            else:
+                print("Invalid Response Please enter a number above")
+                ValueError
         except ValueError:
             print("Error: Please enter valid integers.")
-
-# Get user-defined size for the board
-SIZE, SIZE = get_board_size()
-
-#Setting up the Constants and variables
-OCEAN = "O" #icon for the ocean spaces
-FIRE = "X" # icon for a miss
-HIT = "*" #icon for a hit
-SHIPS = [5, 4, 3, 3, 2] # size of each of the ships
-SEA = [] #empty list for the sea
-
-orientation = -1 # stores the ships hit orientation.
-total_hits = [] #stores the ship number everytime the bot hits a ship
-miss = 1 #stores whether the last ai shot was a miss
-
-player_ship_lives = 17 #the amount of lives for the player equal to the ships
-player_radar = []
-player_board = []
-
-ai_ship_lives = 17 #the Ai lives equal to the ship parts
-ai_radar = []
-ai_board = []
-ship_position = [] 
-ship_length = []
-
-for x in range(SIZE):
-    SEA.append([OCEAN] * SIZE)
+for x in range(rows):
+    SEA.append([OCEAN] * rows)
 
 # Define a function to print the board the player will use
 def print_board():
-    numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     print("\n-------------------------------------------------------\n")
-    print("  " + " ".join(map(str, range(SIZE))) + " || " + " ".join(map(str, range(SIZE))))
-    i = 0
-    for row in range(SIZE):
-        print(i, " ".join(player_radar[row]), "||", " ".join(player_board[row]))
-        i += 1
+    # Print column headers based on the actual number of columns
+    print("  " + " ".join(map(str, range(cols))) + " || " + " ".join(map(str, range(cols))))
+    
+    for i in range(rows):  # Iterate over the rows, not columns
+        print(i, " ".join(player_radar[i]), "||", " ".join(player_board[i]))
 
 # Generate a Random row to place the ship
 def random_row(is_vertical, size):
     if is_vertical:
-        return randint(0, SIZE - size)
+        return randint(0, rows - size)
     else:
-        return randint(0, SIZE - 1)
+        return randint(0, rows - 1)
 
 # Generate a Random Column to place the ship
 def random_col(is_vertical, size):
     if is_vertical:
-        return randint(0, SIZE - 1)
+        return randint(0, cols - 1)
     else:
-        return randint(size - 1, SIZE - 1)
+        return randint(size - 1, cols - 1)
 
 # Check if the given row and col is an ocean space
 def is_ocean(row, col, b): # true if ocean
-    if row < 0 or row >= SIZE:
+    if row < 0 or row >= rows:
         return 0
-    elif col < 0 or col >= SIZE:
+    elif col < 0 or col >= cols:
         return 0
     if b[row][col] == OCEAN:
         return 1
@@ -121,9 +172,9 @@ def is_ocean(row, col, b): # true if ocean
 def is_oceanin(row,col,b):
     if type(row) is not int or type(col) is not int:
         return 0
-    if row < 0 or row >= SIZE:
+    if row < 0 or row >= rows:
         return 0
-    elif col < 0 or col >= SIZE:
+    elif col < 0 or col >= cols:
         return 0
     if b[row][col] == OCEAN:
         return 1
@@ -232,11 +283,11 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
         print("Target Orientation", orientation)
         if not len(ship_length):
             second_shot = 0
-            ai_row_guess = randint(0, SIZE-1)
-            ai_col_guess = randint(0, SIZE-1)
+            ai_row_guess = randint(0, rows-1)
+            ai_col_guess = randint(0, cols-1)
             while not is_ocean(ai_row_guess, ai_col_guess, ai_radar):
-                ai_row_guess = randint(0, SIZE-1)
-                ai_col_guess = randint(0, SIZE-1)
+                ai_row_guess = randint(0, rows-1)
+                ai_col_guess = randint(0, cols-1)
             if not is_ocean(ai_row_guess, ai_col_guess, player_board):
                 miss = 0
                 player_ship_lives -= 1
