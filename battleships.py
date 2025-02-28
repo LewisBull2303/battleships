@@ -1,6 +1,45 @@
 from random import randint
 import copy
 
+def main_menu():
+    while True:
+        print("""
+==========================================================================      
+▀█████████▄     ▄████████     ███         ███      ▄█          ▄████████      
+  ███    ███   ███    ███ ▀█████████▄ ▀█████████▄ ███         ███    ███      
+  ███    ███   ███    ███    ▀███▀▀██    ▀███▀▀██ ███         ███    █▀       
+ ▄███▄▄▄██▀    ███    ███     ███   ▀     ███   ▀ ███        ▄███▄▄▄          
+▀▀███▀▀▀██▄  ▀███████████     ███         ███     ███       ▀▀███▀▀▀          
+  ███    ██▄   ███    ███     ███         ███     ███         ███    █▄       
+  ███    ███   ███    ███     ███         ███     ███▌    ▄   ███    ███      
+▄█████████▀    ███    █▀     ▄████▀      ▄████▀   █████▄▄██   ██████████      
+                                                  ▀                           
+   ▄████████    ▄█    █▄     ▄█     ▄███████▄    ▄████████                    
+  ███    ███   ███    ███   ███    ███    ███   ███    ███                    
+  ███    █▀    ███    ███   ███▌   ███    ███   ███    █▀                     
+  ███         ▄███▄▄▄▄███▄▄ ███▌   ███    ███   ███                           
+▀███████████ ▀▀███▀▀▀▀███▀  ███▌ ▀█████████▀  ▀███████████                    
+         ███   ███    ███   ███    ███                 ███                    
+   ▄█    ███   ███    ███   ███    ███           ▄█    ███                    
+ ▄████████▀    ███    █▀    █▀    ▄████▀       ▄████████▀                                                                                  
+==========================================================================
+        1. Start Game
+        2. Quit
+        """)
+        
+        choice = input("Enter your choice (1 or 2): ")
+        
+        if choice == "1":
+            main_game(player_ship_lives, player_board, player_radar, 
+                      ai_ship_lives, ai_board, ai_radar, 
+                      ship_length, ship_position, orientation, 
+                      total_hits, miss)
+        elif choice == "2":
+            print("Goodbye! Thanks for playing.")
+            break
+        else:
+            print("Invalid choice. Please enter 1 or 2.")
+
 # Prompt the user for the number of rows and columns
 def get_board_size():
     while True:
@@ -153,7 +192,7 @@ for x in range(len(SHIPS)):
 
 # Define the main game loop
 def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, total_hits, miss):
-
+    print_board()
     while player_ship_lives and ai_ship_lives:
         print("\n-------------------------------------------------------\n")
         try:
@@ -297,5 +336,4 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
         print_board()
 
 print("Lets Play Battleships!!")
-print_board()
-main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, total_hits, miss)
+main_menu()
