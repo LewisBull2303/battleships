@@ -66,6 +66,20 @@ def main_menu():
         else:
             print("Invalid choice. Please enter 1 or 2.")
 
+def game_init():
+    global player_radar
+    global player_board
+    global ai_radar
+    global ai_board
+    player_radar = [['O'] * cols for _ in range(rows)]
+    player_board = [['O'] * cols for _ in range(rows)]
+    ai_radar = [['O'] * cols for _ in range(rows)]
+    ai_board = [['O'] * cols for _ in range(rows)]
+
+    for x in range(len(SHIPS)):
+        player_board = place_ships(SHIPS[x], player_board, x)
+        ai_board = place_ships(SHIPS[x], ai_board)
+
 # Prompt the user for the number of rows and columns
 def get_board_size():
     global rows
@@ -88,44 +102,34 @@ def get_board_size():
             if numOfGrid == 1:
                 rows = 5
                 cols = 5
-                print(rows, cols)
-                player_radar = [['O'] * cols for _ in range(rows)]
-                player_board = [['O'] * cols for _ in range(rows)]
-                ai_radar = [['O'] * cols for _ in range(rows)]
-                ai_board = [['O'] * cols for _ in range(rows)]
+                game_init()
                 return rows, cols
             elif numOfGrid == 2:
                 rows = 6
                 cols = 6
                 print(rows, cols)
-                player_radar = [['O'] * cols for _ in range(rows)]
-                player_board = [['O'] * cols for _ in range(rows)]
-                ai_radar = [['O'] * cols for _ in range(rows)]
-                ai_board = [['O'] * cols for _ in range(rows)]
+                game_init()
                 return rows, cols
             elif numOfGrid == 3:
                 rows = 7
                 cols = 7
                 print(rows, cols)
-                player_radar = [['O'] * cols for _ in range(rows)]
-                player_board = [['O'] * cols for _ in range(rows)]
-                ai_radar = [['O'] * cols for _ in range(rows)]
-                ai_board = [['O'] * cols for _ in range(rows)]
+                game_init()
                 return rows, cols
             elif numOfGrid == 4:
                 rows = 8
                 cols = 8
-                print(rows, cols)
+                game_init()
                 return rows, cols
             elif numOfGrid == 5:
                 rows = 9
                 cols = 9
-                print(rows, cols)
+                game_init()
                 return rows, cols
             elif numOfGrid == 6:
                 rows = 10
                 cols = 10
-                print(rows, cols)
+                game_init()
                 return rows, cols
             else:
                 print("Invalid Response Please enter a number above")
@@ -237,9 +241,6 @@ ai_board = copy.deepcopy(SEA)
 number_board = copy.deepcopy(SEA)
 
 # Place the Ships on the player and the AI's Board
-for x in range(len(SHIPS)):
-    player_board = place_ships(SHIPS[x], player_board, x)
-    ai_board = place_ships(SHIPS[x], ai_board)
 
 # Define the main game loop
 def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, total_hits, miss):
