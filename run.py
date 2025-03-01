@@ -14,13 +14,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('battleships_leaderboard')
 
-
-def get_username():
-    username = ("Please enter your username: ")
-    return username
-
-
-
 rows = 10
 cols = 10
 
@@ -35,6 +28,7 @@ orientation = -1 # Stores the ship's hit orientation
 total_hits = [] # Stores the ship number every time the bot hits a ship
 miss = 1 # Stores whether the last AI shot was a miss
 turns_taken = 0 #Stores the number of turns taken for the leaderboard
+username = "PLACEHOLDER"
 
 player_ship_lives = 17 # The amount of lives for the player (equal to the ships)
 ship_position = [] 
@@ -45,6 +39,11 @@ player_board = [] # The board representing player ships' positions
 ai_radar = [] # The radar board for the AI
 ai_board = [] # The board representing AI ships' positions
 ai_ship_lives = 17 # The AI lives (equal to the ship parts)
+
+def get_username():
+    global username
+    username = ("Please enter your username: ")
+    return username
 
 # Main menu function for selecting options
 def main_menu():
@@ -78,6 +77,7 @@ def main_menu():
         
         if choice == "1":
             get_board_size() # Call function to get board size
+            get_username()
             main_game(player_ship_lives, player_board, player_radar, 
                       ai_ship_lives, ai_board, ai_radar, 
                       ship_length, ship_position, orientation, 
@@ -164,41 +164,35 @@ def get_board_size():
         try:
             numOfGrid = int(input("""
 Please pick the size of your grid and difficulty
-1. 5x5 (Very Easy)
-2. 6x6 (Easy)
-3. 7x7 (Medium)
-4. 8x8 (Hard)
-5. 9x9 (Very Hard)
-6. 10x10 (Super Hard!)
+1. 6x6 (Very Easy)
+2. 7x7 (Easy)
+3. 8x8 (Medium)
+4. 9x9 (Hard)
+5. 10x10 (Very Hard)
 \n"""))
             if numOfGrid == 1:
-                rows = 5
-                cols = 5
+                rows = 6
+                cols = 6
                 game_init() # Initialize the game
                 return rows, cols
             elif numOfGrid == 2:
-                rows = 6
-                cols = 6
-                print(rows, cols)
-                game_init() # Initialize the game
-                return rows, cols
-            elif numOfGrid == 3:
                 rows = 7
                 cols = 7
                 print(rows, cols)
                 game_init() # Initialize the game
                 return rows, cols
-            elif numOfGrid == 4:
+            elif numOfGrid == 3:
                 rows = 8
                 cols = 8
+                print(rows, cols)
                 game_init() # Initialize the game
                 return rows, cols
-            elif numOfGrid == 5:
+            elif numOfGrid == 4:
                 rows = 9
                 cols = 9
                 game_init() # Initialize the game
                 return rows, cols
-            elif numOfGrid == 6:
+            elif numOfGrid == 5:
                 rows = 10
                 cols = 10
                 game_init() # Initialize the game
@@ -337,10 +331,10 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
             col_guess = input("Guess Col (or type 'q' to quit):\n")  # Ask player for a column guess
             if col_guess.lower() == 'q':  # Check if player chose to quit
                 print("You chose to quit. Goodbye!")
-                turns_taken = turns_taken + 1
-                print(turns_taken)
                 break
             col_guess = int(col_guess)  # Convert column guess to an integer
+            turns_taken = turns_taken + 1
+            print(turns_taken)
         except ValueError:  # Handle invalid input (non-integer values)
             print("Invalid input. Please enter valid row and column numbers.")
             continue
@@ -360,6 +354,8 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
             else:  # If the AI's ships are all sunk
                 player_radar[row_guess][col_guess] = HIT  # Mark the hit on the player's radar
                 print("Congratulations! You sunk my Battleship")  # Congratulate the player
+                leaderboard = SHEET.worksheet("leaderboard")
+                leaderboard.append_row(username, turns_taken)
                 break  # End the game if AI's ships are sunk
         else:  # If the guess was a miss
             print("\nYou Missed!")
@@ -450,7 +446,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                     print("\n-------------------------------------------------------\n")
                     play_again = input("You Lose!! Would you like to play again y/n?:\n")
                     if play_again == "y":  # If player wants to play again, restart the game
-                        main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, total_hits, miss)
+                        main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, total_hits, miss, turns_taken)
                         break
                     else:
                         exit()  # Exit the game if the player chooses not to play again
