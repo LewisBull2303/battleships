@@ -4,27 +4,28 @@ import copy
 rows = 10
 cols = 10
 
-#Setting up the Constants and variables
-OCEAN = "O" #icon for the ocean spaces
-FIRE = "X" # icon for a miss
-HIT = "*" #icon for a hit
-SHIPS = [5, 4, 3, 3, 2] # size of each of the ships
-SEA = [] #empty list for the sea
+# Setting up the Constants and variables
+OCEAN = "O" # Icon for the ocean spaces
+FIRE = "X" # Icon for a miss
+HIT = "*" # Icon for a hit
+SHIPS = [5, 4, 3, 3, 2] # Sizes of the ships
+SEA = [] # Empty list for the sea (grid)
 
-orientation = -1 # stores the ships hit orientation.
-total_hits = [] #stores the ship number everytime the bot hits a ship
-miss = 1 #stores whether the last ai shot was a miss
+orientation = -1 # Stores the ship's hit orientation
+total_hits = [] # Stores the ship number every time the bot hits a ship
+miss = 1 # Stores whether the last AI shot was a miss
 
-player_ship_lives = 17 #the amount of lives for the player equal to the ships
+player_ship_lives = 17 # The amount of lives for the player (equal to the ships)
 ship_position = [] 
 ship_length = []
 
-player_radar = []
-player_board = []
-ai_radar = []
-ai_board = []
-ai_ship_lives = 17 #the Ai lives equal to the ship parts
+player_radar = [] # The radar board for the player
+player_board = [] # The board representing player ships' positions
+ai_radar = [] # The radar board for the AI
+ai_board = [] # The board representing AI ships' positions
+ai_ship_lives = 17 # The AI lives (equal to the ship parts)
 
+# Main menu function for selecting options
 def main_menu():
     while True:
         print("""
@@ -55,20 +56,21 @@ def main_menu():
         choice = input("Enter your choice (1 or 2): ")
         
         if choice == "1":
-            get_board_size()
+            get_board_size() # Call function to get board size
             main_game(player_ship_lives, player_board, player_radar, 
                       ai_ship_lives, ai_board, ai_radar, 
                       ship_length, ship_position, orientation, 
-                      total_hits, miss)
+                      total_hits, miss) # Call function to start the main game
         elif choice == "2":
-            game_instructions()
+            game_instructions() # Show game instructions
         elif choice == "3":
-            print("Thank you for playing!")
+            print("Thank you for playing!") # Exit message
             exit()
             break
         else:
-            print("Invalid choice. Please enter 1, 2 or 3.")
+            print("Invalid choice. Please enter 1, 2 or 3.") # Error message for invalid input
 
+# Function to show game instructions
 def game_instructions():
     print("""
     Welcome to Battleships!
@@ -108,31 +110,31 @@ def game_instructions():
     """)
     while True:
         try:
-            back = int(input("Type 1 to go back: "))
+            back = int(input("Type 1 to go back: ")) # Prompt user to return to main menu
             if back == 1:
-                main_menu()
+                main_menu() # Go back to the main menu
                 break
         except:
-            print("Please enter a valid option!")
+            print("Please enter a valid option!") # Error message for invalid input
             continue
 
-
-
+# Function to initialize the game
 def game_init():
     global player_radar
     global player_board
     global ai_radar
     global ai_board
-    player_radar = [['O'] * cols for _ in range(rows)]
-    player_board = [['O'] * cols for _ in range(rows)]
-    ai_radar = [['O'] * cols for _ in range(rows)]
-    ai_board = [['O'] * cols for _ in range(rows)]
+    player_radar = [['O'] * cols for _ in range(rows)] # Create a radar board for the player
+    player_board = [['O'] * cols for _ in range(rows)] # Create a board for the player
+    ai_radar = [['O'] * cols for _ in range(rows)] # Create a radar board for the AI
+    ai_board = [['O'] * cols for _ in range(rows)] # Create a board for the AI
 
+    # Place ships for both player and AI
     for x in range(len(SHIPS)):
-        player_board = place_ships(SHIPS[x], player_board, x)
-        ai_board = place_ships(SHIPS[x], ai_board)
+        player_board = place_ships(SHIPS[x], player_board, x) # Place player ships
+        ai_board = place_ships(SHIPS[x], ai_board) # Place AI ships
 
-# Prompt the user for the number of rows and columns
+# Function to prompt the user to choose the board size and difficulty
 def get_board_size():
     global rows
     global cols
@@ -150,85 +152,88 @@ Please pick the size of your grid and difficulty
             if numOfGrid == 1:
                 rows = 5
                 cols = 5
-                game_init()
+                game_init() # Initialize the game
                 return rows, cols
             elif numOfGrid == 2:
                 rows = 6
                 cols = 6
                 print(rows, cols)
-                game_init()
+                game_init() # Initialize the game
                 return rows, cols
             elif numOfGrid == 3:
                 rows = 7
                 cols = 7
                 print(rows, cols)
-                game_init()
+                game_init() # Initialize the game
                 return rows, cols
             elif numOfGrid == 4:
                 rows = 8
                 cols = 8
-                game_init()
+                game_init() # Initialize the game
                 return rows, cols
             elif numOfGrid == 5:
                 rows = 9
                 cols = 9
-                game_init()
+                game_init() # Initialize the game
                 return rows, cols
             elif numOfGrid == 6:
                 rows = 10
                 cols = 10
-                game_init()
+                game_init() # Initialize the game
                 return rows, cols
             else:
                 print("Invalid Response Please enter a number above")
                 ValueError
         except ValueError:
-            print("Error: Please enter valid integers.")
+            print("Error: Please enter valid integers.") # Error message for invalid input
+
+# Initialize the sea with ocean spaces
 for x in range(rows):
     SEA.append([OCEAN] * rows)
 
-# Define a function to print the board the player will use
+# Function to print the board for the player
 def print_board():
     print("\n-------------------------------------------------------\n")
     # Print column headers based on the actual number of columns
     print("  " + " ".join(map(str, range(cols))) + " || " + " ".join(map(str, range(cols))))
     
     for i in range(rows):  # Iterate over the rows, not columns
-        print(i, " ".join(player_radar[i]), "||", " ".join(player_board[i]))
+        print(i, " ".join(player_radar[i]), "||", " ".join(player_board[i])) # Print each row of the player's radar and board
 
-# Generate a Random row to place the ship
+# Generate a random row to place a ship
 def random_row(is_vertical, size):
     if is_vertical:
-        return randint(0, rows - size)
+        return randint(0, rows - size) # If vertical, choose a row that fits the ship
     else:
-        return randint(0, rows - 1)
+        return randint(0, rows - 1) # If horizontal, choose any row
 
-# Generate a Random Column to place the ship
+# Generate a random column to place a ship
 def random_col(is_vertical, size):
     if is_vertical:
-        return randint(0, cols - 1)
+        return randint(0, cols - 1) # If vertical, choose any column
     else:
-        return randint(size - 1, cols - 1)
+        return randint(size - 1, cols - 1) # If horizontal, choose a column that fits the ship
 
-# Check if the given row and col is an ocean space
+# Check if a given row and column is an ocean space
 def is_ocean(row, col, b): # true if ocean
-    if row < 0 or row >= rows:
+    if row < 0 or row >= rows: # If row is out of bounds
         return 0
-    elif col < 0 or col >= cols:
+    elif col < 0 or col >= cols: # If column is out of bounds
         return 0
-    if b[row][col] == OCEAN:
+    if b[row][col] == OCEAN: # Check if the space is ocean
         return 1
     else:
         return 0
 
-def is_oceanin(row,col,b):
-    if type(row) is not int or type(col) is not int:
+# Additional function checking if the given coordinates are ocean
+def is_oceanin(row, col, b):
+    if type(row) is not int or type(col) is not int: # If row or column are not integers
         return 0
-    if row < 0 or row >= rows:
+    if row < 0 or row >= rows: # If row is out of bounds
         return 0
-    elif col < 0 or col >= cols:
+    elif col < 0 or col >= cols: # If column is out of bounds
         return 0
-    if b[row][col] == OCEAN:
+    if b[row][col] == OCEAN: # Check if the space is ocean
         return 1
     else:
         return 0
