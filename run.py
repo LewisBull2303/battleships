@@ -17,6 +17,9 @@ SHEET = GSPREAD_CLIENT.open('battleships_leaderboard')
 
 def get_username():
     username = ("Please enter your username: ")
+    return username
+
+
 
 rows = 10
 cols = 10
@@ -31,6 +34,7 @@ SEA = [] # Empty list for the sea (grid)
 orientation = -1 # Stores the ship's hit orientation
 total_hits = [] # Stores the ship number every time the bot hits a ship
 miss = 1 # Stores whether the last AI shot was a miss
+turns_taken = 0 #Stores the number of turns taken for the leaderboard
 
 player_ship_lives = 17 # The amount of lives for the player (equal to the ships)
 ship_position = [] 
@@ -318,7 +322,8 @@ number_board = copy.deepcopy(SEA)  # Board to track ship numbers for validation
 # Use the place_ships function to randomly place ships on both player and AI boards
 
 # Define the main game loop
-def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, total_hits, miss):
+def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, total_hits, miss, turns_taken):
+    turns_taken = 0
     print_board()  # Print the current board
     while player_ship_lives and ai_ship_lives:  # Continue the game as long as both players have ships
         print("\n-------------------------------------------------------\n")
@@ -332,6 +337,8 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
             col_guess = input("Guess Col (or type 'q' to quit):\n")  # Ask player for a column guess
             if col_guess.lower() == 'q':  # Check if player chose to quit
                 print("You chose to quit. Goodbye!")
+                turns_taken = turns_taken + 1
+                print(turns_taken)
                 break
             col_guess = int(col_guess)  # Convert column guess to an integer
         except ValueError:  # Handle invalid input (non-integer values)
