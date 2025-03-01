@@ -15,6 +15,9 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('battleships_leaderboard')
 
 
+def get_username():
+    username = ("Please enter your username: ")
+
 rows = 10
 cols = 10
 
