@@ -90,7 +90,7 @@ def game_instructions():
     4. The computer will also try to guess your ship locations each turn.
     
     Your turn:
-    - You will be asked to choose a column and a row (e.g., A3, D7) to fire at.
+    - You will be asked to choose a column and a row (e.g., 1,1, 2,2) to fire at.
     - If you hit a ship, the computer will inform you that you’ve struck a ship.
     - If you miss, it will say that your guess was a miss.
 
