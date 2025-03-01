@@ -21,7 +21,6 @@ ship_length = []
 
 player_radar = []
 player_board = []
-ai_ship_lives = 17 #the Ai lives equal to the ship parts
 ai_radar = []
 ai_board = []
 ai_ship_lives = 17 #the Ai lives equal to the ship parts
@@ -93,6 +92,7 @@ def game_instructions():
     - You will be asked to choose a column and a row (e.g., 1,1, 2,2) to fire at.
     - If you hit a ship, the computer will inform you that you’ve struck a ship.
     - If you miss, it will say that your guess was a miss.
+    - There are a total of 17 ship parts for both you and the AI
 
     The Computer's Turn:
     - The computer will also fire at a random location on your grid.
@@ -136,21 +136,17 @@ def game_init():
 def get_board_size():
     global rows
     global cols
-    global player_radar
-    global player_board
-    global ai_radar
-    global ai_board
     while True:
         try:
             numOfGrid = int(input("""
-            Please pick the size of your grid and difficulty
-            1. 5x5 (Very Easy)
-            2. 6x6 (Easy)
-            3. 7x7 (Medium)
-            4. 8x8 (Hard)
-            5. 9x9 (Very Hard)
-            6. 10x10 (Super Hard!)
-            """))
+Please pick the size of your grid and difficulty
+1. 5x5 (Very Easy)
+2. 6x6 (Easy)
+3. 7x7 (Medium)
+4. 8x8 (Hard)
+5. 9x9 (Very Hard)
+6. 10x10 (Super Hard!)
+"""))
             if numOfGrid == 1:
                 rows = 5
                 cols = 5
