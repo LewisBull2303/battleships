@@ -42,7 +42,7 @@ ai_ship_lives = 17 # The AI lives (equal to the ship parts)
 
 def get_username():
     global username
-    username = ("Please enter your username: ")
+    username = input("\nPlease enter your username: ")
     return username
 
 # Main menu function for selecting options
@@ -76,8 +76,8 @@ def main_menu():
         choice = input("Enter your choice (1 or 2):\n")
         
         if choice == "1":
+            get_username() # get the users username
             get_board_size() # Call function to get board size
-            get_username()
             main_game(player_ship_lives, player_board, player_radar, 
                       ai_ship_lives, ai_board, ai_radar, 
                       ship_length, ship_position, orientation, 
@@ -178,13 +178,11 @@ Please pick the size of your grid and difficulty
             elif numOfGrid == 2:
                 rows = 7
                 cols = 7
-                print(rows, cols)
                 game_init() # Initialize the game
                 return rows, cols
             elif numOfGrid == 3:
                 rows = 8
                 cols = 8
-                print(rows, cols)
                 game_init() # Initialize the game
                 return rows, cols
             elif numOfGrid == 4:
@@ -334,7 +332,6 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 break
             col_guess = int(col_guess)  # Convert column guess to an integer
             turns_taken = turns_taken + 1
-            print(turns_taken)
         except ValueError:  # Handle invalid input (non-integer values)
             print("Invalid input. Please enter valid row and column numbers.")
             continue
@@ -354,15 +351,16 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
             else:  # If the AI's ships are all sunk
                 player_radar[row_guess][col_guess] = HIT  # Mark the hit on the player's radar
                 print("Congratulations! You sunk my Battleship")  # Congratulate the player
+                entry = [username, turns_taken]
                 leaderboard = SHEET.worksheet("leaderboard")
-                leaderboard.append_row(username, turns_taken)
+                leaderboard.append_row(entry)
                 break  # End the game if AI's ships are sunk
         else:  # If the guess was a miss
             print("\nYou Missed!")
             player_radar[row_guess][col_guess] = FIRE  # Mark the miss on the player's radar
         
         # AI's turn to guess
-        print("Target Orientation", orientation)  # Show the orientation of the AI's next shot
+        print("\nTarget Orientation", orientation)  # Show the orientation of the AI's next shot
         if not len(ship_length):  # If the AI hasn't hit any ships yet, choose a random guess
             second_shot = 0
             ai_row_guess = randint(0, rows-1)  # Generate random row for the AI's shot
