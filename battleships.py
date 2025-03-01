@@ -49,7 +49,8 @@ def main_menu():
  ▄████████▀    ███    █▀    █▀    ▄████▀       ▄████████▀                                                                                  
 ==========================================================================
         1. Start Game
-        2. Quit
+        2. How to Play
+        3. Quit
         """)
         
         choice = input("Enter your choice (1 or 2): ")
@@ -61,10 +62,61 @@ def main_menu():
                       ship_length, ship_position, orientation, 
                       total_hits, miss)
         elif choice == "2":
-            print("Goodbye! Thanks for playing.")
+            game_instructions()
+        elif choice == "3":
+            print("Thank you for playing!")
+            exit()
             break
         else:
-            print("Invalid choice. Please enter 1 or 2.")
+            print("Invalid choice. Please enter 1, 2 or 3.")
+
+def game_instructions():
+    print("""
+    Welcome to Battleships!
+
+    Objective:
+    Sink all of your opponent's battleships before they sink yours!
+
+    Game Overview:
+    - You and the computer will each have a grid filled with ships.
+    - Ships are placed in a line (either horizontally or vertically) and can be anywhere from 2 to 5 spaces in size.
+    - Your goal is to guess where the enemy ships are located by choosing a row and column, trying to hit them!
+    - The computer will also try to sink your ships, and it can detect if your ships are placed horizontally or vertically.
+    
+    How to Play:
+    1. First, you will choose your grid size.
+    2. Then, ships will be placed randomly on the grid (you cannot see where they are!).
+    3. During each turn, you will pick a row and column to guess where an enemy ship might be.
+    4. The computer will also try to guess your ship locations each turn.
+    
+    Your turn:
+    - You will be asked to choose a column and a row (e.g., A3, D7) to fire at.
+    - If you hit a ship, the computer will inform you that you’ve struck a ship.
+    - If you miss, it will say that your guess was a miss.
+
+    The Computer's Turn:
+    - The computer will also fire at a random location on your grid.
+    - The computer uses its strategy to determine if your ships are positioned horizontally or vertically, so be careful!
+
+    Ship Sizes:
+    - Ships range from 2 to 5 spaces in length.
+    
+    End Game:
+    - The game ends when either player sinks all of the opponent’s ships or all their ships are sunk.
+
+    Ready to play? Let's get started!
+    """)
+    while True:
+        try:
+            back = int(input("Type 1 to go back: "))
+            if back == 1:
+                main_menu()
+                break
+        except:
+            print("Please enter a valid option!")
+            continue
+
+
 
 def game_init():
     global player_radar
