@@ -81,7 +81,7 @@ def main_menu():
             main_game(player_ship_lives, player_board, player_radar, 
                       ai_ship_lives, ai_board, ai_radar, 
                       ship_length, ship_position, orientation, 
-                      total_hits, miss) # Call function to start the main game
+                      total_hits, miss, turns_taken) # Call function to start the main game
         elif choice == "2":
             game_instructions() # Show game instructions
         elif choice == "3":
