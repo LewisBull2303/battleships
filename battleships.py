@@ -53,7 +53,7 @@ def main_menu():
         3. Quit
         """)
         
-        choice = input("Enter your choice (1 or 2): ")
+        choice = input("Enter your choice (1 or 2):\n")
         
         if choice == "1":
             get_board_size() # Call function to get board size
@@ -110,7 +110,7 @@ def game_instructions():
     """)
     while True:
         try:
-            back = int(input("Type 1 to go back: ")) # Prompt user to return to main menu
+            back = int(input("Type 1 to go back:\n")) # Prompt user to return to main menu
             if back == 1:
                 main_menu() # Go back to the main menu
                 break
@@ -148,7 +148,7 @@ Please pick the size of your grid and difficulty
 4. 8x8 (Hard)
 5. 9x9 (Very Hard)
 6. 10x10 (Super Hard!)
-"""))
+\n"""))
             if numOfGrid == 1:
                 rows = 5
                 cols = 5
@@ -305,13 +305,13 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
     while player_ship_lives and ai_ship_lives:  # Continue the game as long as both players have ships
         print("\n-------------------------------------------------------\n")
         try:
-            row_guess = input("Guess Row (or type 'q' to quit): ")  # Ask player for a row guess
+            row_guess = input("Guess Row (or type 'q' to quit):\n")  # Ask player for a row guess
             if row_guess.lower() == 'q':  # Check if player chose to quit
                 print("You chose to quit. Goodbye!")
                 break
             row_guess = int(row_guess)  # Convert row guess to an integer
             
-            col_guess = input("Guess Col (or type 'q' to quit): ")  # Ask player for a column guess
+            col_guess = input("Guess Col (or type 'q' to quit):\n")  # Ask player for a column guess
             if col_guess.lower() == 'q':  # Check if player chose to quit
                 print("You chose to quit. Goodbye!")
                 break
@@ -323,8 +323,8 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
         # Ensure the guessed position is a valid ocean space
         while not is_oceanin(row_guess, col_guess, player_radar):
             print("Sorry that is an invalid shot")
-            row_guess = int(input("Guess Row: "))  # Re-prompt the player for valid input
-            col_guess = int(input("Guess Col: "))  # Re-prompt the player for valid input
+            row_guess = int(input("Guess Row:\n"))  # Re-prompt the player for valid input
+            col_guess = int(input("Guess Col:\n"))  # Re-prompt the player for valid input
         
         # Check if the player's guess hits a ship on the AI's board
         if ai_board[row_guess][col_guess] != OCEAN:
@@ -423,7 +423,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                     print("We're going down, Abandon Ship!!")
                     print_board()  # Print final game state
                     print("\n-------------------------------------------------------\n")
-                    play_again = input("You Lose!! Would you like to play again y/n?: ")
+                    play_again = input("You Lose!! Would you like to play again y/n?:\n")
                     if play_again == "y":  # If player wants to play again, restart the game
                         main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, total_hits, miss)
                         break
