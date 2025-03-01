@@ -1,5 +1,15 @@
 from random import randint
 import copy
+import gspread
+from google.oauth2.service_account import Credentials
+
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+]
+
+
 
 rows = 10
 cols = 10
@@ -95,6 +105,7 @@ def game_instructions():
     - If you hit a ship, the computer will inform you that you’ve struck a ship.
     - If you miss, it will say that your guess was a miss.
     - There are a total of 17 ship parts for both you and the AI
+    - You and the AI each have 5 Ships, one is 5 parts long, another is 4 parts long, 2 of them are 3 parts long and the last is 2 parts long
 
     The Computer's Turn:
     - The computer will also fire at a random location on your grid.
