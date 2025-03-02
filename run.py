@@ -339,8 +339,12 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
         # Ensure the guessed position is a valid ocean space
         while not is_oceanin(row_guess, col_guess, player_radar):
             print("Sorry that is an invalid shot")
-            row_guess = int(input("Guess Row:\n"))  # Re-prompt the player for valid input
-            col_guess = int(input("Guess Col:\n"))  # Re-prompt the player for valid input
+            try:
+                row_guess = int(input("Guess Row:\n"))  # Re-prompt the player for valid input
+                col_guess = int(input("Guess Col:\n"))  # Re-prompt the player for valid input
+            except:
+                print("That is invalid, please enter an number")
+                continue
         
         # Check if the player's guess hits a ship on the AI's board
         if ai_board[row_guess][col_guess] != OCEAN:
