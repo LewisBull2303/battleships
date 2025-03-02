@@ -35,6 +35,11 @@
  *  Default styles for xterm.js
  */
 
+
+ body{
+    background-color: red;
+ }
+
  .xterm {
     font-feature-settings: "liga" 0;
     position: relative;
