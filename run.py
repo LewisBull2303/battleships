@@ -42,7 +42,7 @@ ai_ship_lives = 17 # The AI lives (equal to the ship parts)
 
 def get_username():
     global username
-    username = input("\nPlease enter your username: ")
+    username = input("\nPlease enter your username: \n")
     return username
 
 # Main menu function for selecting options
