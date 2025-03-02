@@ -299,9 +299,27 @@ def ship_number(r,c):
 
 # Check if a ship is sunk based on total hits
 def ship_sunk():
+    print(total_hits)
     if total_hits.count(total_hits[0]) == ship_length[0]:  # If all parts of the ship are hit
         return 1  # The ship is sunk
     return 0  # The ship is not sunk yet
+
+def ai_turn():
+    ai_row_guess = randint(0, rows - 1)
+    ai_col_guess = randint(0, cols - 1)
+
+    # Avoid guessing spots that have already been targeted (misses or hits)
+    while ai_radar[ai_row_guess][ai_col_guess] in [FIRE, HIT]:
+        ai_row_guess = randint(0, rows - 1)
+        ai_col_guess = randint(0, cols - 1)
+
+    if ai_board[ai_row_guess][ai_col_guess] != OCEAN:  # Hit
+        player_ship_lives -= 1
+        ai_radar[ai_row_guess][ai_col_guess] = HIT
+        print("The Enemy Hit You!")
+    else:  # Miss
+        ai_radar[ai_row_guess][ai_col_guess] = FIRE
+        print("The Enemy Missed!")
 
 # Init the Boards (deep copy of SEA grid)
 player_radar = copy.deepcopy(SEA)  # Radar for player (to track guesses)
@@ -325,6 +343,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 print("You chose to quit. Goodbye!")
                 break
             row_guess = int(row_guess)  # Convert row guess to an integer
+            print(total_hits)
             
             col_guess = input("Guess Col (or type 'q' to quit):\n")  # Ask player for a column guess
             if col_guess.lower() == 'q':  # Check if player chose to quit
@@ -385,39 +404,32 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 ai_radar[ai_row_guess][ai_col_guess] = FIRE
                 print("\nThe Enemy Missed!!")
         else:  # If the AI has already hit a ship, determine the next shot based on ship orientation
-            if orientation == -1:  # If the AI has no orientation yet, check possible directions for a hit
-                print("Ship has no orientation")
-                if is_ocean(ship_position[0]+1, ship_position[1], ai_radar):
-                    ai_row_guess = ship_position[0] + 1
+            if len(ship_position) >= 2:  # Ensure that the ship_position list has at least two elements
+                if orientation == -1:
+                    print("Ship has no orientation")
+                    if is_ocean(ship_position[0] + 1, ship_position[1], ai_radar):
+                        ai_row_guess = ship_position[0] + 1
+                        ai_col_guess = ship_position[1]
+                    elif is_ocean(ship_position[0] - 1, ship_position[1], ai_radar):
+                        ai_row_guess = ship_position[0] - 1
+                        ai_col_guess = ship_position[1]
+                    elif is_ocean(ship_position[0], ship_position[1] - 1, ai_radar):
+                        ai_row_guess = ship_position[0]
+                        ai_col_guess = ship_position[1] - 1
+                    else:
+                        ai_row_guess = ship_position[0]
+                        ai_col_guess = ship_position[1] + 1
+                elif orientation == 1:  # Vertical orientation
+                    ai_row_guess = ship_position[0] + 1  # Move downwards (vertical)
                     ai_col_guess = ship_position[1]
-                elif is_ocean(ship_position[0] - 1, ship_position[1], ai_radar):
-                    ai_row_guess = ship_position[0] - 1
-                    ai_col_guess = ship_position[1]
-                elif is_ocean(ship_position[0], ship_position[1] - 1, ai_radar):
+                else:  # Horizontal orientation
                     ai_row_guess = ship_position[0]
-                    ai_col_guess = ship_position[1] - 1
-                else:
-                    ai_row_guess = ship_position[0]
-                    ai_col_guess = ship_position[1 + 1]
-            elif orientation:  # If the AI has determined the ship's orientation is vertical, adjust accordingly
-                for item in ai_radar:
-                    print(item[0], ' '.join(map(str, item[1:])))
-                if is_ocean(ai_row_guess + 1, ai_col_guess, ai_radar) and not miss:
-                    ai_row_guess += 1
-                else:
-                    ai_row_guess -= 1
-                    while not is_ocean(ai_row_guess, ai_col_guess, ai_radar):
-                        ai_row_guess -= 1
-            
-            else:  # If the orientation is horizontal, adjust the AI's shot in that direction
-                for item in ai_radar:
-                    print(item[0], ' '.join(map(str, item[1:])))
-                if is_ocean(ai_row_guess, ai_col_guess - 1, ai_radar) and not miss:
-                    ai_col_guess = ai_col_guess - 1
-                else:
-                    ai_col_guess = ai_col_guess + 1
-                    while not is_ocean(ai_row_guess, ai_col_guess, ai_radar):
-                        ai_col_guess += 1
+                    ai_col_guess = ship_position[1] + 1  # Move right (horizontal)
+            else:
+                print("Ship position list is too short!")
+                # Add a fallback for the AI to make random guesses if the position list is incomplete.
+                ai_row_guess = randint(0, rows-1)
+                ai_col_guess = randint(0, cols-1)
 
             if not is_ocean(ai_row_guess, ai_col_guess, player_board):  # If AI hits a ship
                 player_board[ai_row_guess][ai_col_guess] = HIT  # Mark the hit on player's board
@@ -435,7 +447,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 elif total_hits[0] != number_board[ai_row_guess][ai_col_guess]:
                     ship_length.append((ship_number(ai_row_guess, ai_col_guess)))  # Update the ship length
                     ship_position.extend([ai_row_guess, ai_col_guess])  # Add new ship position
-                if player_ship_lives:  # If the player still has ships left, continue the game
+                if player_ship_lives > 0:  # If the player still has ships left, continue the game
                     miss = 0
                     print("Captain We've Been Hit!!")
                 else:  # If the player is out of ships, declare AI as the winner
