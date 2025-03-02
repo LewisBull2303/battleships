@@ -171,7 +171,7 @@ Please pick the size of your grid and difficulty
 5. 10x10 (Very Hard)
 \n"""))
             if numOfGrid == 1:
-                rows = 6
+                rows = 6 
                 cols = 6
                 game_init() # Initialize the game
                 return rows, cols
