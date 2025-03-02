@@ -320,17 +320,17 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
     while player_ship_lives and ai_ship_lives:  # Continue the game as long as both players have ships
         print("\n-------------------------------------------------------\n")
         try:
-            row_guess = input("Guess Row (or type 'q' to quit):\n")  # Ask player for a row guess
-            if row_guess.lower() == 'q':  # Check if player chose to quit
-                print("You chose to quit. Goodbye!")
-                break
-            row_guess = int(row_guess)  # Convert row guess to an integer
-            
             col_guess = input("Guess Col (or type 'q' to quit):\n")  # Ask player for a column guess
             if col_guess.lower() == 'q':  # Check if player chose to quit
                 print("You chose to quit. Goodbye!")
                 break
             col_guess = int(col_guess)  # Convert column guess to an integer
+
+            row_guess = input("Guess Row (or type 'q' to quit):\n")  # Ask player for a row guess
+            if row_guess.lower() == 'q':  # Check if player chose to quit
+                print("You chose to quit. Goodbye!")
+                break
+            row_guess = int(row_guess)  # Convert row guess to an integer
             turns_taken = turns_taken + 1
         except ValueError:  # Handle invalid input (non-integer values)
             print("Invalid input. Please enter valid row and column numbers.")
@@ -340,8 +340,8 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
         while not is_oceanin(row_guess, col_guess, player_radar):
             print("Sorry that is an invalid shot")
             try:
-                row_guess = int(input("Guess Row:\n"))  # Re-prompt the player for valid input
                 col_guess = int(input("Guess Col:\n"))  # Re-prompt the player for valid input
+                row_guess = int(input("Guess Row:\n"))  # Re-prompt the player for valid input
             except:
                 print("That is invalid, please enter an number")
                 continue
