@@ -12,6 +12,32 @@ This classic game is played on a number of various grid sizes that the player ca
 
 The Objective is simple, sink all of the CPUs ships before they sink all of yours, but be warned, the Computer is very skilled and winning is not easy!
 
+## Project Goals
+
+### User Goals
+- Play a fun single player game
+- Have access to a leaderboard of the 10 best scores and players
+- Have clear instructions on how to play the game
+- Be able to have my score on the leaderboard and have the leaderboard update in real time 
+
+### Site Owner Goals
+- Create a fun and enjoyable single player game
+- Give clear and easy to read instructions for the player
+- Be able to add a score to a leaderboard for the player to see
+- Allow the player to see a list of the 10 best scores on the leaderboard
+
+## User Experience
+
+### Target Audience
+
+My target audience are people aged 7+, who has a love for games and a particular interest in retro arcade games
+
+### User Requirements and Expectations
+
+- A fun and enjoyable game
+- A Retro arcade style
+- Straight forward instructions
+- A leaderboard that updates when the positions change
 
 Battleships is a Python Terminal Game, which runs in the Visual Studio Code terminal
 
