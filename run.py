@@ -1,6 +1,7 @@
 from random import randint
 import copy
 import gspread
+from tabulate import tabulate
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -45,6 +46,12 @@ def get_username():
     username = input("\nPlease enter your username: \n")
     return username
 
+def get_leaderboard_entries():
+    leaderboard = SHEET.worksheet("sorted_leaderboard")
+    score = leaderboard.get("A1:B11")
+    print(tabulate(score))
+    
+
 # Main menu function for selecting options
 def main_menu():
     while True:
@@ -70,10 +77,11 @@ def main_menu():
 ==========================================================================
         1. Start Game
         2. How to Play
-        3. Quit
+        3. Leaderboard
+        4. Quit
         """)
         
-        choice = input("Enter your choice (1 or 2):\n")
+        choice = input("Enter your choice (1, 2, 3 or 4):\n")
         
         if choice == "1":
             get_username() # get the users username
@@ -85,11 +93,14 @@ def main_menu():
         elif choice == "2":
             game_instructions() # Show game instructions
         elif choice == "3":
+            get_leaderboard_entries() #Shows the Leaderboard of the top 10 players
+            back = input("Press any key to return to the main menu: ")
+        elif choice == "4":
             print("Thank you for playing!") # Exit message
             exit()
             break
         else:
-            print("Invalid choice. Please enter 1, 2 or 3.") # Error message for invalid input
+            print("Invalid choice. Please enter 1, 2, 3 or 4.") # Error message for invalid input
 
 # Function to show game instructions
 def game_instructions():
