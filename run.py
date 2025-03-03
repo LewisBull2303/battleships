@@ -2,6 +2,7 @@ from random import randint
 import copy
 import gspread
 from tabulate import tabulate
+from colors import Colors as Col
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
