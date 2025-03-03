@@ -35,13 +35,6 @@
  *  Default styles for xterm.js
  */
 
-
- body{
-    background-image: url('');
-    justify-content: center;
-    align-content: center;
- }
-
  .xterm {
     font-feature-settings: "liga" 0;
     position: relative;

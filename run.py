@@ -95,7 +95,7 @@ def main_menu():
             game_instructions() # Show game instructions
         elif choice == "3":
             get_leaderboard_entries() #Shows the Leaderboard of the top 10 players
-            back = input("Press any key to return to the main menu: ")
+            back = input("Press any key to return to the main menu:\n")
         elif choice == "4":
             print("Thank you for playing!") # Exit message
             exit()
