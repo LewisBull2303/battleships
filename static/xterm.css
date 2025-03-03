@@ -37,10 +37,7 @@
 
 
  body{
-    background-image: url('https://github.com/LewisBull2303/battleships/blob/main/assets/images/battleship-pictures-gtxokkmhxeiycq20.jpg?raw=true');
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
+    background-image: url('');
     justify-content: center;
     align-content: center;
  }
@@ -172,8 +169,4 @@ button {
     text-transform: uppercase;
     margin: 10px;
     border-radius: 8px;
-}
-
-button:hover {
-    background-color: #79260b;
 }
