@@ -1,4 +1,6 @@
-#Python Battleships
+# BattleShips 
+
+[View Live Website Here](https://project3-battleships-lewisbull-4aabd5542a7c.herokuapp.com/)
 
 Battleships is a Python Terminal Game, which runs in the Visual Studio Code terminal
 
