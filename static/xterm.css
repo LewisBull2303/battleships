@@ -37,7 +37,9 @@
 
 
  body{
-    background-color: red;
+    background-image: url('');
+    justify-content: center;
+    align-items: center;
  }
 
  .xterm {
