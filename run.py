@@ -282,7 +282,7 @@ def place_ships(size, board, set_ship = None):
                     occupied = True  # Mark as occupied if any part of the ship would overlap another ship
     # Now place the ship on the board
     if is_vertical:
-        board[ship_row][ship_col] = "^"  # Place the top of the ship
+        board[ship_row][ship_col] = Col.WHITE + "^"  # Place the top of the ship
         board[ship_row + size - 1][ship_col] = "v"  # Place the bottom of the ship
         if set_ship != None:  # If a ship number is provided, mark the number on the ship's positions
             number_board[ship_row][ship_col] = set_ship
