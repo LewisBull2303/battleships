@@ -396,7 +396,6 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
             player_radar[row_guess][col_guess] = FIRE  # Mark the miss on the player's radar
         
         # AI's turn to guess
-        print("\nTarget Orientation", orientation)  # Show the orientation of the AI's next shot
         if not len(ship_length):  # If the AI hasn't hit any ships yet, choose a random guess
             ai_row_guess = randint(0, rows-1)  # Generate random row for the AI's shot
             ai_col_guess = randint(0, cols-1)  # Generate random column for the AI's shot
@@ -423,7 +422,8 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 player_board[ai_row_guess][ai_col_guess] = FIRE
                 ai_radar[ai_row_guess][ai_col_guess] = FIRE
                 print("\nThe Enemy Missed!!")
-        else:                  
+        else:  
+            if orientation == -1:  
                 if len(ship_position) > 2:  # Ensure that there are at least 3 elements in ship_position
                     ai_col_guess = ship_position[1 + 1]  # Access the third element if available
                 else:
