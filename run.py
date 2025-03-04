@@ -60,6 +60,7 @@ def get_leaderboard_entries():
 # Main menu function for selecting options
 def main_menu():
     while True:
+        clear_screen()
         print("""
 ==========================================================================      
 ▀█████████▄     ▄████████     ███         ███      ▄█          ▄████████      
@@ -149,15 +150,8 @@ def game_instructions():
 
     Ready to play? Let's get started!
     """)
-    while True:
-        try:
-            back = int(input("Type 1 to go back:\n")) # Prompt user to return to main menu
-            if back == 1:
-                main_menu() # Go back to the main menu
-                break
-        except:
-            print("Please enter a valid option!") # Error message for invalid input
-            continue
+    back = input("Type any key to return to the main menu: \n")
+    main_menu()
 
 # Function to initialize the game
 def game_init():
