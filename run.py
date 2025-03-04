@@ -28,7 +28,7 @@ SHIPS = [5, 4, 3, 3, 2] # Sizes of the ships
 SEA = [] # Empty list for the sea (grid)
 
 orientation = -1 # Stores the ship's hit orientation
-total_hits = [] # Stores the ship number every time the bot hits a ship
+ai_total_hits = [] # Stores the ship number every time the bot hits a ship
 miss = 1 # Stores whether the last AI shot was a miss
 turns_taken = 0 #Stores the number of turns taken for the leaderboard
 username = "PLACEHOLDER"
@@ -96,7 +96,7 @@ def main_menu():
             main_game(player_ship_lives, player_board, player_radar, 
                       ai_ship_lives, ai_board, ai_radar, 
                       ship_length, ship_position, orientation, 
-                      total_hits, miss, turns_taken) # Call function to start the main game
+                      ai_total_hits, miss, turns_taken) # Call function to start the main game
         elif choice == "2":
             clear_screen()
             game_instructions() # Show game instructions
@@ -323,8 +323,8 @@ def ship_number(r,c):
 
 # Check if a ship is sunk based on total hits
 def ship_sunk():
-    if total_hits.count(total_hits[0]) == ship_length[0]:  # If all parts of the ship are hit
-        print("\nYou sunk one of my Battleships\n")
+    if ai_total_hits.count(ai_total_hits[0]) == ship_length[0]:  # If all parts of the ship are hit
+        print("\Attention Captain! The Enemy sunk one of your Battleships\n")
         return 1  # The ship is sunk
     return 0  # The ship is not sunk yet
 
@@ -339,7 +339,7 @@ number_board = copy.deepcopy(SEA)  # Board to track ship numbers for validation
 # Use the place_ships function to randomly place ships on both player and AI boards
 
 # Define the main game loop
-def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, total_hits, miss, turns_taken):
+def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, ai_total_hits, miss, turns_taken):
     turns_taken = 0
     print_board()  # Print the current board
     while player_ship_lives and ai_ship_lives:  # Continue the game as long as both players have ships
@@ -412,7 +412,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 orientation = -1  # Reset the ship's orientation
                 player_board[ai_row_guess][ai_col_guess] = HIT  # Mark the hit on the player's board
                 ai_radar[ai_row_guess][ai_col_guess] = HIT  # Mark the hit on the AI's radar
-                total_hits.append(number_board[ai_row_guess][ai_col_guess])  # Track the hit
+                ai_total_hits.append(number_board[ai_row_guess][ai_col_guess])  # Track the hit
                 print("Attention Captain! You've been Hit!")
             else:  # If the AI misses, mark the miss on the board
                 miss = 1
@@ -462,17 +462,17 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
             if not is_ocean(ai_row_guess, ai_col_guess, player_board):  # If AI hits a ship
                 player_board[ai_row_guess][ai_col_guess] = HIT  # Mark the hit on player's board
                 ai_radar[ai_row_guess][ai_col_guess] = HIT  # Mark the hit on AI's radar
-                total_hits.append(number_board[ai_row_guess][ai_col_guess])  # Track the hit
+                ai_total_hits.append(number_board[ai_row_guess][ai_col_guess])  # Track the hit
                 player_ship_lives -= 1  # Decrease the player's remaining ship lives
                 print(f"\nPlayer ship Lives statement 2: {player_ship_lives}\n")
                 
                 # Check if the AI has found the orientation of the ship
-                if total_hits.count(total_hits[0]) == 2 and ship_number(ai_row_guess, ai_col_guess) == ship_number(ship_position[0], ship_position[1]):
+                if ai_total_hits.count(ai_total_hits[0]) == 2 and ship_number(ai_row_guess, ai_col_guess) == ship_number(ship_position[0], ship_position[1]):
                     if ai_col_guess != ship_position[1]:
                         orientation = 0
                     else:
                         orientation = 1
-                elif total_hits[0] != number_board[ai_row_guess][ai_col_guess]:
+                elif ai_total_hits[0] != number_board[ai_row_guess][ai_col_guess]:
                     ship_length.append((ship_number(ai_row_guess, ai_col_guess)))  # Update the ship length
                     ship_position.extend([ai_row_guess, ai_col_guess])  # Add new ship position
                 if player_ship_lives:  # If the player still has ships left, continue the game
@@ -484,7 +484,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                     print("\n-------------------------------------------------------\n")
                     play_again = input("You Lose!! Would you like to play again y/n?:\n")
                     if play_again == "y":  # If player wants to play again, restart the game
-                        main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, total_hits, miss, turns_taken)
+                        main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, ai_total_hits, miss, turns_taken)
                         break
                     else:
                         exit()  # Exit the game if the player chooses not to play again
@@ -499,9 +499,9 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 ship_position.pop(0)  # Remove first position from the ship's position list
                 ship_position.pop(0)  # Remove second position from the ship's position list
                 ship_length.pop(0)  # Remove the sunk ship's length from the list
-                t = total_hits[0]  # Identify the ship that was sunk
-                for x in range(total_hits.count(t)):  # Remove all parts of the sunk ship from the total hits
-                    total_hits.remove(t)
+                t = ai_total_hits[0]  # Identify the ship that was sunk
+                for x in range(ai_total_hits.count(t)):  # Remove all parts of the sunk ship from the total hits
+                    ai_total_hits.remove(t)
                 if len(ship_length) != 0:  # If the player still has ships left, reset miss flag
                     miss = 0
                 else:  # If no ships left, set miss flag
