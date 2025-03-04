@@ -423,10 +423,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 player_board[ai_row_guess][ai_col_guess] = FIRE
                 ai_radar[ai_row_guess][ai_col_guess] = FIRE
                 print("\nThe Enemy Missed!!")
-        else:  
-            if orientation == -1:  
-                print("Ship has no orientation")
-                
+        else:                  
                 if len(ship_position) > 2:  # Ensure that there are at least 3 elements in ship_position
                     ai_col_guess = ship_position[1 + 1]  # Access the third element if available
                 else:
