@@ -381,8 +381,9 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
         # Check if the player's guess hits a ship on the AI's board
         if ai_board[row_guess][col_guess] != OCEAN:
             ai_ship_lives -= 1  # Decrease the AI's remaining ship lives
+            print(f"\n {ai_ship_lives}\n")
             if ai_ship_lives:  # If the AI still has ships left, print a hit message
-                print("You Hit an Enemy Ship!")
+                print("You Hit an Enemy Ship!\n")
                 player_radar[row_guess][col_guess] = HIT  # Mark the hit on the player's radar
             else:  # If the AI's ships are all sunk
                 player_radar[row_guess][col_guess] = HIT  # Mark the hit on the player's radar
@@ -410,6 +411,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                     break
                 miss = 0  # Indicate that the shot was not a miss
                 player_ship_lives -= 1  # Decrease player's remaining ship lives
+                print(f"\n{player_ship_lives}\n")
                 ship_length.append((ship_number(ai_row_guess, ai_col_guess)))  # Add ship part to the list
                 ship_position.extend([ai_row_guess, ai_col_guess])  # Add the position to the list
                 orientation = -1  # Reset the ship's orientation
@@ -467,6 +469,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 ai_radar[ai_row_guess][ai_col_guess] = HIT  # Mark the hit on AI's radar
                 total_hits.append(number_board[ai_row_guess][ai_col_guess])  # Track the hit
                 player_ship_lives -= 1  # Decrease the player's remaining ship lives
+                print(f"\n{player_ship_lives}\n")
                 
                 # Check if the AI has found the orientation of the ship
                 if total_hits.count(total_hits[0]) == 2 and ship_number(ai_row_guess, ai_col_guess) == ship_number(ship_position[0], ship_position[1]):
