@@ -43,6 +43,9 @@ ai_radar = [] # The radar board for the AI
 ai_board = [] # The board representing AI ships' positions
 ai_ship_lives = 17 # The AI lives (equal to the ship parts)
 
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
+
 def get_username():
     global username
     username = input("\nPlease enter your username: \n")
@@ -56,6 +59,7 @@ def get_leaderboard_entries():
 
 # Main menu function for selecting options
 def main_menu():
+    clear_screen()
     while True:
         print("""
 ==========================================================================      
@@ -86,6 +90,7 @@ def main_menu():
         choice = input("Enter your choice (1, 2, 3 or 4):\n")
         
         if choice == "1":
+            clear_screen()
             get_username() # get the users username
             get_board_size() # Call function to get board size
             main_game(player_ship_lives, player_board, player_radar, 
@@ -93,8 +98,10 @@ def main_menu():
                       ship_length, ship_position, orientation, 
                       total_hits, miss, turns_taken) # Call function to start the main game
         elif choice == "2":
+            clear_screen()
             game_instructions() # Show game instructions
         elif choice == "3":
+            clear_screen()
             get_leaderboard_entries() #Shows the Leaderboard of the top 10 players
             back = input("Press any key to return to the main menu:\n")
         elif choice == "4":
@@ -367,7 +374,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 player_radar[row_guess][col_guess] = HIT  # Mark the hit on the player's radar
             else:  # If the AI's ships are all sunk
                 player_radar[row_guess][col_guess] = HIT  # Mark the hit on the player's radar
-                print("Congratulations! You sunk my Battleship")  # Congratulate the player
+                print("Congratulations! You win! You sunk my Battleship")  # Congratulate the player
                 entry = [username, turns_taken]
                 leaderboard = SHEET.worksheet("leaderboard")
                 leaderboard.append_row(entry)
