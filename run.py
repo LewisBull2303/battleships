@@ -59,8 +59,8 @@ def get_leaderboard_entries():
 
 # Main menu function for selecting options
 def main_menu():
-    clear_screen()
     while True:
+        clear_screen()
         print("""
 ==========================================================================      
 ▀█████████▄     ▄████████     ███         ███      ▄█          ▄████████      
