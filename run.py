@@ -1,5 +1,6 @@
 from random import randint
 import copy
+import os
 import gspread
 from tabulate import tabulate
 from colors import Colors as Col
@@ -20,9 +21,9 @@ rows = 10
 cols = 10
 
 # Setting up the Constants and variables
-OCEAN = "O" # Icon for the ocean spaces
-FIRE = "X" # Icon for a miss
-HIT = "*" # Icon for a hit
+OCEAN = Col.BLUE + 'O' + Col.RESET # Icon for the ocean spaces
+FIRE = Col.WHITE + "X" + Col.RESET # Icon for a miss
+HIT = (Col.RED + "*" + Col.RESET) # Icon for a hit
 SHIPS = [5, 4, 3, 3, 2] # Sizes of the ships
 SEA = [] # Empty list for the sea (grid)
 
@@ -158,10 +159,10 @@ def game_init():
     global player_board
     global ai_radar
     global ai_board
-    player_radar = [['O'] * cols for _ in range(rows)] # Create a radar board for the player
-    player_board = [['O'] * cols for _ in range(rows)] # Create a board for the player
-    ai_radar = [['O'] * cols for _ in range(rows)] # Create a radar board for the AI
-    ai_board = [['O'] * cols for _ in range(rows)] # Create a board for the AI
+    player_radar = [[Col.BLUE + 'O' + Col.RESET] * cols for _ in range(rows)] # Create a radar board for the player
+    player_board = [[Col.BLUE + 'O' + Col.RESET] * cols for _ in range(rows)] # Create a board for the player
+    ai_radar = [[Col.BLUE + 'O' + Col.RESET] * cols for _ in range(rows)] # Create a radar board for the AI
+    ai_board = [[Col.BLUE + 'O' + Col.RESET] * cols for _ in range(rows)] # Create a board for the AI
 
     # Place ships for both player and AI
     for x in range(len(SHIPS)):
@@ -246,7 +247,7 @@ def is_ocean(row, col, b): # true if ocean
         return 0
     elif col < 0 or col >= cols: # If column is out of bounds
         return 0
-    if b[row][col] == OCEAN: # Check if the space is ocean
+    if b[row][col] == (Col.BLUE + "O" + Col.RESET): # Check if the space is ocean
         return 1
     else:
         return 0
@@ -282,23 +283,23 @@ def place_ships(size, board, set_ship = None):
                     occupied = True  # Mark as occupied if any part of the ship would overlap another ship
     # Now place the ship on the board
     if is_vertical:
-        board[ship_row][ship_col] = Col.WHITE + "^"  # Place the top of the ship
-        board[ship_row + size - 1][ship_col] = "v"  # Place the bottom of the ship
+        board[ship_row][ship_col] = (Col.GREY + "^" + Col.RESET)  # Place the top of the ship
+        board[ship_row + size - 1][ship_col] = (Col.GREY + "v" + Col.RESET)  # Place the bottom of the ship
         if set_ship != None:  # If a ship number is provided, mark the number on the ship's positions
             number_board[ship_row][ship_col] = set_ship
             number_board[ship_row + size - 1][ship_col] = set_ship
         for p in range(size - 2):  # Place the middle parts of the ship
-            board[ship_row + p + 1][ship_col] = "+"
+            board[ship_row + p + 1][ship_col] = (Col.GREY + "+" + Col.RESET)
             if set_ship != None:
                 number_board[ship_row + p + 1][ship_col] = set_ship
     else:  # Horizontal placement of the ship
-        board[ship_row][ship_col] = ">"  # Place the right end of the ship
-        board[ship_row][ship_col - size + 1] = "<"  # Place the left end of the ship
+        board[ship_row][ship_col] = (Col.GREY + ">" + Col.RESET)  # Place the right end of the ship
+        board[ship_row][ship_col - size + 1] = (Col.GREY + "<" + Col.RESET)  # Place the left end of the ship
         if set_ship != None:  # If a ship number is provided, mark the number on the ship's positions
             number_board[ship_row][ship_col] = set_ship
             number_board[ship_row][ship_col - size + 1] = set_ship
         for p in range(size - 2):  # Place the middle parts of the ship
-            board[ship_row][ship_col - p - 1] = "+"
+            board[ship_row][ship_col - p - 1] = (Col.GREY + "+" + Col.RESET)
             if set_ship != None:
                 number_board[ship_row][ship_col - p - 1] = set_ship
     return board  # Return the updated board with the ship placed
