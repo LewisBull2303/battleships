@@ -438,8 +438,6 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                     ai_row_guess = randint(0, rows - 1)
                     ai_col_guess = randint(0, cols - 1)
             elif orientation:  # If the AI has determined the ship's orientation is vertical, adjust accordingly
-                for item in ai_radar:
-                    print(item[0], ' '.join(map(str, item[1:])))
                 if is_ocean(ai_row_guess + 1, ai_col_guess, ai_radar) and not miss:
                     ai_row_guess += 1
                 else:
@@ -448,8 +446,6 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                         ai_row_guess -= 1
             
             else:  # If the orientation is horizontal, adjust the AI's shot in that direction
-                for item in ai_radar:
-                    print(item[0], ' '.join(map(str, item[1:])))
                 if is_ocean(ai_row_guess, ai_col_guess - 1, ai_radar) and not miss:
                     ai_col_guess = ai_col_guess - 1
                 else:
@@ -476,13 +472,14 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                     miss = 0
                     print("\nCaptain We've Been Hit!!")
                 else:  # If the player is out of ships, declare AI as the winner
-                    print("We're going down, Abandon Ship!!")
+                    print("\nOh no! All of your battleships have been sunk!")
                     print("\n-------------------------------------------------------\n")
                     play_again = input("You Lose!! Would you like to play again y/n?:\n")
                     if play_again == "y":  # If player wants to play again, restart the game
                         main_menu()
                         break
                     else:
+                        print("\n Thanks for playing!")
                         exit()  # Exit the game if the player chooses not to play again
                     break
             else:  # If AI misses, mark the miss on the board
