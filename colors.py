@@ -9,6 +9,6 @@ class Colors:
     GREEN = "\033[32;49m"
     WHITE = "\033[37;49m"
     CYAN = "\033[36;49m"
-    GREY = "\033[38;5;236m"
+    GREY = "\033[38;5;242m"
     OCEAN = "\033[44m  \033[0m"
     RESET = "\033[0m"
