@@ -324,6 +324,7 @@ def ship_number(r,c):
 # Check if a ship is sunk based on total hits
 def ship_sunk():
     if total_hits.count(total_hits[0]) == ship_length[0]:  # If all parts of the ship are hit
+        print("\nYou sunk one of my Battleships\n")
         return 1  # The ship is sunk
     return 0  # The ship is not sunk yet
 
