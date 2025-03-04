@@ -29,6 +29,7 @@ SEA = [] # Empty list for the sea (grid)
 
 orientation = -1 # Stores the ship's hit orientation
 ai_total_hits = [] # Stores the ship number every time the bot hits a ship
+player_total_hits = [] # Stores the ship number every time the player hits a ship
 miss = 1 # Stores whether the last AI shot was a miss
 turns_taken = 0 #Stores the number of turns taken for the leaderboard
 username = "PLACEHOLDER"
@@ -96,7 +97,7 @@ def main_menu():
             main_game(player_ship_lives, player_board, player_radar, 
                       ai_ship_lives, ai_board, ai_radar, 
                       ship_length, ship_position, orientation, 
-                      ai_total_hits, miss, turns_taken) # Call function to start the main game
+                      ai_total_hits,player_total_hits, miss, turns_taken) # Call function to start the main game
         elif choice == "2":
             clear_screen()
             game_instructions() # Show game instructions
@@ -324,8 +325,11 @@ def ship_number(r,c):
 # Check if a ship is sunk based on total hits
 def ship_sunk():
     if ai_total_hits.count(ai_total_hits[0]) == ship_length[0]:  # If all parts of the ship are hit
-        print("\Attention Captain! The Enemy sunk one of your Battleships\n")
+        print("Attention Captain! The Enemy sunk one of your Battleships\n")
         return 1  # The ship is sunk
+    
+    if player_total_hits.count(player_total_hits[0] == ship_length[0]):
+        print("Good Job Captain! You sunk one of the Enemies Battleships!\n")
     return 0  # The ship is not sunk yet
 
 # Init the Boards (deep copy of SEA grid)
@@ -334,12 +338,13 @@ player_board = copy.deepcopy(SEA)  # Player's actual ship placement
 ai_radar = copy.deepcopy(SEA)  # Radar for AI (to track AI's guesses)
 ai_board = copy.deepcopy(SEA)  # AI's actual ship placement
 number_board = copy.deepcopy(SEA)  # Board to track ship numbers for validation
+player_number_board = copy.deepcopy(SEA)
 
 # Place the Ships on the player and the AI's Board
 # Use the place_ships function to randomly place ships on both player and AI boards
 
 # Define the main game loop
-def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, ai_total_hits, miss, turns_taken):
+def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_board, ai_radar, ship_length, ship_position, orientation, ai_total_hits, player_total_hits, miss, turns_taken):
     turns_taken = 0
     print_board()  # Print the current board
     while player_ship_lives and ai_ship_lives:  # Continue the game as long as both players have ships
@@ -376,6 +381,10 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
         # Check if the player's guess hits a ship on the AI's board
         if ai_board[row_guess][col_guess] != OCEAN:
             ai_ship_lives -= 1  # Decrease the AI's remaining ship lives
+            player_total_hits.append(player_number_board[row_guess][col_guess])  # Track the hit
+            if player_total_hits[0] != player_number_board[row_guess][col_guess]:
+                    ship_length.append((ship_number(row_guess, col_guess)))  # Update the ship length
+                    ship_position.extend([row_guess, col_guess])  # Add new ship position
             print(f"\n AI Ship lives: {ai_ship_lives}\n")
             if ai_ship_lives:  # If the AI still has ships left, print a hit message
                 print("You Hit an Enemy Ship!\n")
