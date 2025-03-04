@@ -392,7 +392,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 leaderboard.append_row(entry)
                 break  # End the game if AI's ships are sunk
         else:  # If the guess was a miss
-            print("\nYou Missed!")
+            print("\nYou Missed!\n")
             player_radar[row_guess][col_guess] = FIRE  # Mark the miss on the player's radar
         
         # AI's turn to guess
@@ -430,7 +430,6 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                     # If ship_position doesn't have enough elements, handle the situation
                     ai_row_guess = ship_position[0]  # Default to the first element in ship_position
                     ai_col_guess = ship_position[1] if len(ship_position) > 1 else 0  # Default to 0 if there's only one element
-
                 if is_ocean(ship_position[0] + 1, ship_position[1], ai_radar):
                     ai_row_guess = ship_position[0] + 1
                     ai_col_guess = ship_position[1]
@@ -475,7 +474,6 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                         orientation = 0
                     else:
                         orientation = 1
-                    print("New Orientation: ", orientation)
                 elif total_hits[0] != number_board[ai_row_guess][ai_col_guess]:
                     ship_length.append((ship_number(ai_row_guess, ai_col_guess)))  # Update the ship length
                     ship_position.extend([ai_row_guess, ai_col_guess])  # Add new ship position
