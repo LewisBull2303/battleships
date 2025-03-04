@@ -21,8 +21,8 @@ rows = 10
 cols = 10
 
 # Setting up the Constants and variables
-OCEAN = Col.BLUE + 'O' + Col.RESET # Icon for the ocean spaces
-FIRE = Col.WHITE + "X" + Col.RESET # Icon for a miss
+OCEAN = (Col.BLUE + 'O' + Col.RESET) # Icon for the ocean spaces
+FIRE = (Col.WHITE + "X" + Col.RESET) # Icon for a miss
 HIT = (Col.RED + "*" + Col.RESET) # Icon for a hit
 SHIPS = [5, 4, 3, 3, 2] # Sizes of the ships
 SEA = [] # Empty list for the sea (grid)
@@ -60,7 +60,6 @@ def get_leaderboard_entries():
 # Main menu function for selecting options
 def main_menu():
     while True:
-        clear_screen()
         print("""
 ==========================================================================      
 ▀█████████▄     ▄████████     ███         ███      ▄█          ▄████████      
