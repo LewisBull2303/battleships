@@ -228,11 +228,22 @@ for x in range(rows):
 # Function to print the board for the player
 def print_board():
     print("\n-------------------------------------------------------\n")
+    if cols == 6:
+        print("  CPUs Board" + "     " + f"{username}'s Board")
+    elif cols == 7:
+        print("  CPUs Board" + "       " + f"{username}'s Board")
+    elif cols == 8:
+        print("  CPUs Board" + "         " + f"{username}'s Board")
+    elif cols == 9:
+        print("  CPUs Board" + "           " + f"{username}'s Board")
+    else:
+        print("  CPUs Board" + "             " + f"{username}'s Board")
     # Print column headers based on the actual number of columns
     print("  " + " ".join(map(str, range(cols))) + " || " + " ".join(map(str, range(cols))))
     
     for i in range(rows):  # Iterate over the rows, not columns
         print(i, " ".join(player_radar[i]), "||", " ".join(player_board[i])) # Print each row of the player's radar and board
+        
 
 # Generate a random row to place a ship
 def random_row(is_vertical, size):
