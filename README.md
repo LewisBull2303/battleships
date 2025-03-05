@@ -265,6 +265,7 @@ My target audience are people aged 7+, who has a love for games and a particular
 - If the player selects no then the game exits out
 - User Stories Answered: 2, 7, 8, 9, 13 
 
+*Please note that for this picture I changed the ai_lives to 1 manually this is not how the game works*
 <details>
  <summary>Images</summary>
 
@@ -279,6 +280,8 @@ My target audience are people aged 7+, who has a love for games and a particular
 - If yes then it takes the player back to the main menu
 - If no then it exits out of the game#
 - User Stories Answered: 2, 7, 8, 9, 13  
+
+*Please note that for this picture I changed the player_lives to 1 manually this is not how the game works*
 
 <details>
  <summary>Images</summary>
