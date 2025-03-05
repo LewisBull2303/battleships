@@ -65,23 +65,42 @@ My target audience are people aged 7+, who has a love for games and a particular
 
 ### Flow Charts
 
-Main Menu:
+ <summary>Main Menu</summary>
+
 ![image](https://github.com/user-attachments/assets/4529bd2f-24bb-49b5-b2a3-f3bfcfdd451b)
 
-Gameplay Loop Flowchart - Player:
+</details>
+</br>
+
+ <summary>Gameplay Loop Flowchart - Player</summary>
+
 ![image](https://github.com/user-attachments/assets/d74fbf42-b237-4f82-b811-7f3f485b217a)
 
-Gameplay Loop Flowchart - CPU:
+</details>
+</br>
+
+ <summary>Gameplay Loop Flowchart - CPU</summary>
 
 ![image](https://github.com/user-attachments/assets/f8e973af-2a1d-46d3-9646-bee0e86ded1b)
 
-Leaderboard Upload Flowchart:
+</details>
+</br>
+
+ <summary>Leaderboard Upload Flowchart</summary>
+
 ![image](https://github.com/user-attachments/assets/09c51548-26fd-4c55-8cdc-15ed888c29ec)
+
+</details>
+</br>
 
 ### Wireframes:
 
+ <summary>Images</summary>
+
 ![image](https://github.com/user-attachments/assets/e234afe8-93da-47ff-8c03-204c4bb8db13)
 
+</details>
+</br>
 
 ## Technologies Used:
 
@@ -114,9 +133,14 @@ Leaderboard Upload Flowchart:
 - Clearly shows the player all of the choices available to them.
 - Has a flashy and bold ASCII art title to draw the player in.
 - User Stories answered: 7, 8, 12, 13, 16, 17
+<details>
+ <summary>Images</summary>
 
 ![image](https://github.com/user-attachments/assets/f030230d-13c5-41e9-84eb-a2a7b667d638)
 ![image](https://github.com/user-attachments/assets/1ddd5fea-3adf-46f2-b0bb-5b258a26256b)
+
+</details>
+</br>
 
 ### Game Rules/How to play
 - Clearly displays the rules and how to play to the user.
