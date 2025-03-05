@@ -42,7 +42,7 @@ player_radar = [] # The radar board for the player
 player_board = [] # The board representing player ships' positions
 ai_radar = [] # The radar board for the AI
 ai_board = [] # The board representing AI ships' positions
-ai_ship_lives = 17 # The AI lives (equal to the ship parts)
+ai_ship_lives = 1 # The AI lives (equal to the ship parts)
 
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
