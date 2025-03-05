@@ -364,7 +364,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 player_radar[row_guess][col_guess] = HIT  # Mark the hit on the player's radar
 
                 print("Congratulations! You win! You sunk all my Battleships")  # Congratulate the player
-                leaderboard_entry = input(f"You won! Would you like to upload your score to the leaderboard? (y/n) Your Score: {turns_taken}\n")
+                leaderboard_entry = input(f"You won! Would you like to upload your score to the leaderboard? (y/n) \nYour Score: {turns_taken}\n")
                 while True:
                     if leaderboard_entry.lower() == "y":
                         print("Uploading...")
