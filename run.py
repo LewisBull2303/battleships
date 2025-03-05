@@ -1,6 +1,7 @@
 from random import randint
 import copy
 import os
+import time
 import gspread
 from tabulate import tabulate
 from colors import Colors as Col
@@ -99,6 +100,7 @@ def main_menu():
                       total_hits, miss, turns_taken) # Call function to start the main game
         elif choice == "2":
             clear_screen()
+            time.sleep(1)
             game_instructions() # Show game instructions
         elif choice == "3":
             clear_screen()
@@ -155,10 +157,13 @@ def game_instructions():
 
 # Function to initialize the game
 def game_init():
+    
     global player_radar
     global player_board
     global ai_radar
     global ai_board
+    print("Loading...")
+    time.sleep(1)
     player_radar = [[Col.BLUE + 'O' + Col.RESET] * cols for _ in range(rows)] # Create a radar board for the player
     player_board = [[Col.BLUE + 'O' + Col.RESET] * cols for _ in range(rows)] # Create a board for the player
     ai_radar = [[Col.BLUE + 'O' + Col.RESET] * cols for _ in range(rows)] # Create a radar board for the AI
@@ -381,10 +386,39 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 player_radar[row_guess][col_guess] = HIT  # Mark the hit on the player's radar
             else:  # If the AI's ships are all sunk
                 player_radar[row_guess][col_guess] = HIT  # Mark the hit on the player's radar
-                print("Congratulations! You win! You sunk my Battleship")  # Congratulate the player
-                entry = [username, turns_taken]
-                leaderboard = SHEET.worksheet("leaderboard")
-                leaderboard.append_row(entry)
+
+                print("Congratulations! You win! You sunk all my Battleships")  # Congratulate the player
+                leaderboard_entry = input(f"You won! Would you like to upload your score to the leaderboard? (y/n) Your Score: {turns_taken}\n")
+                while True:
+                    if leaderboard_entry.lower() == "y":
+                        print("Uploading...")
+                        time.sleep(1)
+                        entry = [username, turns_taken]
+                        leaderboard = SHEET.worksheet("leaderboard")
+                        leaderboard.append_row(entry)
+                        print("Uploaded!")
+                        break
+                    elif leaderboard_entry.lower() == "n":
+                        print("Score Deleted")
+                        break
+                    else:
+                        print("Please enter a valid option")
+                        continue
+
+                while True:
+                    play_again = input("Would you like to play again? (y/n)\n")
+                    if play_again.lower == "y":
+                        print("Loading...")
+                        time.sleep(1)
+                        main_menu()
+                        break
+                    elif play_again.lower() == "n":
+                        print("Thanks for playing!")
+                        exit
+                        break
+                    else:
+                        print("Please enter a valid option")
+                        continue
                 break  # End the game if AI's ships are sunk
         else:  # If the guess was a miss
             print("\nYou Missed!")
@@ -501,5 +535,4 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                     miss = 1
         print_board()  # Print the updated game board
 
-print("Lets Play Battleships!!")  # Welcome message
 main_menu()  # Start the main menu to begin the game
