@@ -93,16 +93,22 @@ def main_menu():
         if choice == "1":
             clear_screen()
             get_username() # get the users username
+            print("\nLoading...")
+            time.sleep(1)
+            clear_screen()
             get_board_size() # Call function to get board size
             main_game(player_ship_lives, player_board, player_radar, 
                       ai_ship_lives, ai_board, ai_radar, 
                       ship_length, ship_position, orientation, 
                       total_hits, miss, turns_taken) # Call function to start the main game
         elif choice == "2":
-            clear_screen()
+            print("\nLoading...")
             time.sleep(1)
+            clear_screen()
             game_instructions() # Show game instructions
         elif choice == "3":
+            print("\nLoading...")
+            time.sleep(1)
             clear_screen()
             get_leaderboard_entries() #Shows the Leaderboard of the top 10 players
             back = input("Press any key to return to the main menu:\n")
