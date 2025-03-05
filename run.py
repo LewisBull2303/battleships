@@ -93,10 +93,10 @@ def main_menu():
         if choice == "1":
             clear_screen()
             get_username() # get the users username
-            print("\nLoading...")
-            time.sleep(1)
-            clear_screen()
             get_board_size() # Call function to get board size
+            clear_screen()
+            print("Loading...")
+            time.sleep(1)
             main_game(player_ship_lives, player_board, player_radar, 
                       ai_ship_lives, ai_board, ai_radar, 
                       ship_length, ship_position, orientation, 
@@ -168,8 +168,6 @@ def game_init():
     global player_board
     global ai_radar
     global ai_board
-    print("Loading...")
-    time.sleep(1)
     player_radar = [[Col.BLUE + 'O' + Col.RESET] * cols for _ in range(rows)] # Create a radar board for the player
     player_board = [[Col.BLUE + 'O' + Col.RESET] * cols for _ in range(rows)] # Create a board for the player
     ai_radar = [[Col.BLUE + 'O' + Col.RESET] * cols for _ in range(rows)] # Create a radar board for the AI
