@@ -48,14 +48,18 @@ My target audience are people aged 7+, who has a love for games and a particular
  6. As a User, I would like it to be clear how many more hits I need to win.
  7. As a User, I would like for there to be a main menu.
  8. As a User, I would like it to be clear the options available to me.
+ 9. As a User, I would like to be able to go back to the main meny from any point in the game.
+ 10. As a User, I would like to be able to pick a difficulty
 
 ### Site Owner Stories
-9. As a site owner, I would like the game to be fun and enjoyable.
-10. As a site owner, I would like the game to be challenging and have varying degrees of challenge.
-11. As a site owner, I would like the game to feel like an arcade game.
-12. As a site owner, I would like a leaderboard and for the users to be able to see the leaderboard.
-13. As a site owner, I would like the game to be consistant in design.
-14. As a Site owner, I would like my users data to be stored in a google sheet.
+11. As a site owner, I would like the game to be fun and enjoyable.
+12. As a site owner, I would like the game to be challenging and have varying degrees of challenge.
+13. As a site owner, I would like the game to feel like an arcade game.
+14. As a site owner, I would like a leaderboard and for the users to be able to see the leaderboard.
+15. As a site owner, I would like the game to be consistant in design.
+16. As a Site owner, I would like my users data to be stored in a google sheet.
+17. As a site owner, I would like the user to be able to naviagate my game with ease.
+18. As a site owner I would like for it to be clear how to play my game.
 
 ## Technical Design
 
@@ -109,23 +113,65 @@ Leaderboard Upload Flowchart:
 - A fun main menu which is reminiscent of an old style arace game.
 - Clearly shows the player all of the choices available to them.
 - Has a flashy and bold ASCII art title to draw the player in.
-- User Stories answered: 
+- User Stories answered: 7, 8, 12, 43, 16
 
 ### Game Rules/How to play
 - Clearly displays the rules and how to play to the user.
 - Allows the user to return back to the main menu whenever they wish.
-- User Stories answered:
+- User Stories answered: 1, 9, 16, 17
 
 ### Grid Select/Difficulty Select
 - Gives the user multiple options on how large they want the grid
 - Allows the user to select any size they wish which all corresponds to a specific difficulty
-- User Stories Answered:
+- User Stories Answered: 8, 10, 12, 15, 
 
 ### Leaderboard
 - Clearly displays to the user the 10 best players usernames and their individual scores
 - Allows the user to return back to the home page whenever they wish
 - User Stories Answered:
 
+### Enter a Username
+- Allows the player to enter any username that they want
+- The username is stored for later use in the leaderboard
+- User Stories Answered: 
+
+### Player Guessing Rows and Columns
+- Allows the player to guess a row and column on the CPUs board
+- Does not allow the player to guess off the board or on a space they have already guessed
+- User Stories Answered:
+
+### AI Lives Tracker
+- Allows the player to see how many lives the CPU has left if they hit an enemy ship
+- Updates after each hit to give an accurate reading on how many more spaces the player need to hit
+- User Stories Answered:
+
+### You Hit/Missed
+- Appears if the player hits or misses an enemy ship
+- Changes depending on whether the player hits or misses
+- Clearly states when the player hits or misses a ship
+- User Stories Answered: 
+
+### CPU Hit/Missed
+- Appears if the CPU hits or misses a shot
+- Changes depending on if the CPU hits or misses
+- Clearly States when the CPU hits or misses a ship
+- User Stories Answered: 
+
+### Finished Game Screen - Win
+- Pops up if the player wins the game
+- Asks the player if they want to add their score to the scoreboard
+- If yes the score gets uploaded to the spreadsheet and sorted to its correct location
+- After it asks the player if they want to play again
+- If the player selects yes then they are taken back to the home screen
+- If the player selects no then the game exits out
+- User Stories Answered: 
+
+### Finished Game Screen - Lose
+- Appears when the player loses
+- Asks the player if they want to play again
+- If yes then it takes the player back to the main menu
+- If no then it exits out of the game#
+- User Stories Answered: 
 
 Battleships is a Python Terminal Game, which runs in the Visual Studio Code terminal
 
