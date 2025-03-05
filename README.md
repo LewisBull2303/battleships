@@ -46,6 +46,15 @@ My target audience are people aged 7+, who has a love for games and a particular
 Main Menu:
 ![image](https://github.com/user-attachments/assets/4529bd2f-24bb-49b5-b2a3-f3bfcfdd451b)
 
+Gameplay Loop Flowchart - Player:
+![image](https://github.com/user-attachments/assets/d74fbf42-b237-4f82-b811-7f3f485b217a)
+
+Gameplay Loop Flowchart - CPU:
+
+![image](https://github.com/user-attachments/assets/f8e973af-2a1d-46d3-9646-bee0e86ded1b)
+
+Leaderboard Upload Flowchart:
+![image](https://github.com/user-attachments/assets/09c51548-26fd-4c55-8cdc-15ed888c29ec)
 
 ## Technologies Used:
 
