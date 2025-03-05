@@ -39,6 +39,22 @@ My target audience are people aged 7+, who has a love for games and a particular
 - Straight forward instructions
 - A leaderboard that updates when the positions change
 
+### User Stories
+ 1. As a user, I would like to know how to play the game
+ 2. As a user, I would like the game to be replayable in the terminal
+ 3. As a User, I would like to have a unique username on the leaderboard
+ 4. As a User, I would like to see a leaderboard of the 10 best players
+ 5. As a User, I would like it to be clear when I hit an enemy and when I miss
+ 6. As a User, I would like it to be clear how many more hits I need to win
+ 7. As a User, I would like for there to be a main menu
+
+### Site Owner Stories
+8. As a site owner, I would like the game to be fun and enjoyable
+9. As a site owner, I would like the game to be challenging and have varying degrees of challenge
+10. As a site owner, I would like the game to feel like an arcade game
+11. As a site owner, I would like a leaderboard and for the users to be able to see the leaderboard
+12. As a site owner, I would like the game to be consistant in design
+
 ## Technical Design
 
 ### Flow Charts
