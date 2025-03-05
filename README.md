@@ -147,32 +147,84 @@ My target audience are people aged 7+, who has a love for games and a particular
 - Allows the user to return back to the main menu whenever they wish.
 - User Stories answered: 1, 9, 16, 17
 
+<details>
+ <summary>Images</summary>
 
+![image](https://github.com/user-attachments/assets/673ee8f3-25d7-463d-85ca-1bfe125f0b4b)
+
+</details>
+</br>
 
 ### Grid Select/Difficulty Select
 - Gives the user multiple options on how large they want the grid
 - Allows the user to select any size they wish which all corresponds to a specific difficulty
 - User Stories Answered: 8, 10, 12, 15
 
+<details>
+ <summary>Images</summary>
+
+![image](https://github.com/user-attachments/assets/9ca4ea79-c844-4a8c-80fe-79ff63a4dbd0)
+![image](https://github.com/user-attachments/assets/4649bc96-f617-4cc5-9bc2-60618a666732)
+![image](https://github.com/user-attachments/assets/d06d793a-d089-48c1-83c7-f8b16210bb35)
+![image](https://github.com/user-attachments/assets/9b506c08-aff4-4ce1-b4cd-777ba0cac421)
+![image](https://github.com/user-attachments/assets/5ddd645b-57c2-4ee1-96d6-ac8bf26432c9)
+![image](https://github.com/user-attachments/assets/79484b40-a6fa-4dbe-897f-02331f78ff25)
+
+</details>
+</br>
+
 ### Leaderboard
 - Clearly displays to the user the 10 best players usernames and their individual scores
 - Allows the user to return back to the home page whenever they wish
 - User Stories Answered: 3, 4, 14, 15, 17
+
+<details>
+ <summary>Images</summary>
+
+![image](https://github.com/user-attachments/assets/85f870e4-54aa-4aa7-890f-1d07e64fe587)
+ 
+</details>
+</br>
 
 ### Enter a Username
 - Allows the player to enter any username that they want
 - The username is stored for later use in the leaderboard
 - User Stories Answered: 3
 
+<details>
+ <summary>Images</summary>
+
+![image](https://github.com/user-attachments/assets/4535e9ea-42b9-4469-9583-a1821b2a4a55)
+
+</details>
+</br>
+
 ### Player Guessing Rows and Columns
 - Allows the player to guess a row and column on the CPUs board
 - Does not allow the player to guess off the board or on a space they have already guessed
 - User Stories Answered: 11, 18
 
+<details>
+ <summary>Images</summary>
+
+![image](https://github.com/user-attachments/assets/23ca2fa7-2a81-418f-be9e-f651b968e789)
+![image](https://github.com/user-attachments/assets/6199906c-4ab2-4e19-a9de-cc76b3174f51)
+
+</details>
+</br>
+
 ### AI Lives Tracker
 - Allows the player to see how many lives the CPU has left if they hit an enemy ship
 - Updates after each hit to give an accurate reading on how many more spaces the player need to hit
 - User Stories Answered: 6, 11, 13
+
+<details>
+ <summary>Images</summary>
+
+![image](https://github.com/user-attachments/assets/048f2f97-bdfc-4767-b789-008e06bcca45)
+
+</details>
+</br>
 
 ### You Hit/Missed
 - Appears if the player hits or misses an enemy ship
@@ -180,11 +232,29 @@ My target audience are people aged 7+, who has a love for games and a particular
 - Clearly states when the player hits or misses a ship
 - User Stories Answered: 5, 6, 11, 15
 
+<details>
+ <summary>Images</summary>
+
+![image](https://github.com/user-attachments/assets/374f7aa2-1a04-45e1-aad8-513d27f690f4)
+![image](https://github.com/user-attachments/assets/d45dfbcc-7bb1-483f-a324-59c1a2687330)
+
+</details>
+</br>
+
 ### CPU Hit/Missed
 - Appears if the CPU hits or misses a shot
 - Changes depending on if the CPU hits or misses
 - Clearly States when the CPU hits or misses a ship
 - User Stories Answered: 5, 6, 11, 15
+
+<details>
+ <summary>Images</summary>
+
+![image](https://github.com/user-attachments/assets/e5ba7c22-3841-4772-a66d-5484ac311c82)
+![image](https://github.com/user-attachments/assets/3f4ca9dd-20d2-43a9-bcd3-ec653a975715)
+
+</details>
+</br>
 
 ### Finished Game Screen - Win
 - Pops up if the player wins the game
@@ -195,12 +265,28 @@ My target audience are people aged 7+, who has a love for games and a particular
 - If the player selects no then the game exits out
 - User Stories Answered: 2, 7, 8, 9, 13 
 
+<details>
+ <summary>Images</summary>
+
+
+
+</details>
+</br>
+
 ### Finished Game Screen - Lose
 - Appears when the player loses
 - Asks the player if they want to play again
 - If yes then it takes the player back to the main menu
 - If no then it exits out of the game#
 - User Stories Answered: 2, 7, 8, 9, 13  
+
+<details>
+ <summary>Images</summary>
+
+
+
+</details>
+</br>
 
 Battleships is a Python Terminal Game, which runs in the Visual Studio Code terminal
 
