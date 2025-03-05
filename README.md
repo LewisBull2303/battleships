@@ -113,49 +113,54 @@ Leaderboard Upload Flowchart:
 - A fun main menu which is reminiscent of an old style arace game.
 - Clearly shows the player all of the choices available to them.
 - Has a flashy and bold ASCII art title to draw the player in.
-- User Stories answered: 7, 8, 12, 43, 16
+- User Stories answered: 7, 8, 12, 13, 16, 17
+
+![image](https://github.com/user-attachments/assets/f030230d-13c5-41e9-84eb-a2a7b667d638)
+![image](https://github.com/user-attachments/assets/1ddd5fea-3adf-46f2-b0bb-5b258a26256b)
 
 ### Game Rules/How to play
 - Clearly displays the rules and how to play to the user.
 - Allows the user to return back to the main menu whenever they wish.
 - User Stories answered: 1, 9, 16, 17
 
+
+
 ### Grid Select/Difficulty Select
 - Gives the user multiple options on how large they want the grid
 - Allows the user to select any size they wish which all corresponds to a specific difficulty
-- User Stories Answered: 8, 10, 12, 15, 
+- User Stories Answered: 8, 10, 12, 15
 
 ### Leaderboard
 - Clearly displays to the user the 10 best players usernames and their individual scores
 - Allows the user to return back to the home page whenever they wish
-- User Stories Answered:
+- User Stories Answered: 3, 4, 14, 15, 17
 
 ### Enter a Username
 - Allows the player to enter any username that they want
 - The username is stored for later use in the leaderboard
-- User Stories Answered: 
+- User Stories Answered: 3
 
 ### Player Guessing Rows and Columns
 - Allows the player to guess a row and column on the CPUs board
 - Does not allow the player to guess off the board or on a space they have already guessed
-- User Stories Answered:
+- User Stories Answered: 11, 18
 
 ### AI Lives Tracker
 - Allows the player to see how many lives the CPU has left if they hit an enemy ship
 - Updates after each hit to give an accurate reading on how many more spaces the player need to hit
-- User Stories Answered:
+- User Stories Answered: 6, 11, 13
 
 ### You Hit/Missed
 - Appears if the player hits or misses an enemy ship
 - Changes depending on whether the player hits or misses
 - Clearly states when the player hits or misses a ship
-- User Stories Answered: 
+- User Stories Answered: 5, 6, 11, 15
 
 ### CPU Hit/Missed
 - Appears if the CPU hits or misses a shot
 - Changes depending on if the CPU hits or misses
 - Clearly States when the CPU hits or misses a ship
-- User Stories Answered: 
+- User Stories Answered: 5, 6, 11, 15
 
 ### Finished Game Screen - Win
 - Pops up if the player wins the game
@@ -164,14 +169,14 @@ Leaderboard Upload Flowchart:
 - After it asks the player if they want to play again
 - If the player selects yes then they are taken back to the home screen
 - If the player selects no then the game exits out
-- User Stories Answered: 
+- User Stories Answered: 2, 7, 8, 9, 13 
 
 ### Finished Game Screen - Lose
 - Appears when the player loses
 - Asks the player if they want to play again
 - If yes then it takes the player back to the main menu
 - If no then it exits out of the game#
-- User Stories Answered: 
+- User Stories Answered: 2, 7, 8, 9, 13  
 
 Battleships is a Python Terminal Game, which runs in the Visual Studio Code terminal
 
