@@ -56,6 +56,11 @@ Gameplay Loop Flowchart - CPU:
 Leaderboard Upload Flowchart:
 ![image](https://github.com/user-attachments/assets/09c51548-26fd-4c55-8cdc-15ed888c29ec)
 
+### Wireframes:
+
+![image](https://github.com/user-attachments/assets/e234afe8-93da-47ff-8c03-204c4bb8db13)
+
+
 ## Technologies Used:
 
 ### Languages
