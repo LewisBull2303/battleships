@@ -45,23 +45,23 @@ My target audience are people aged 7+, who has a love for games and a particular
 - Python
 
 ### Frameworjs and Tools
-- [Miro](https://miro.com/)
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [Git](https://git-scm.com/)
-- [GitHub](https://github.com/)
-- [Google Cloud Platform](https://cloud.google.com/cloud-console)
+- [Miro](https://miro.com/) - Miro was used to make the wireframes and flowcharts.
+- [Visual Studio Code](https://code.visualstudio.com/) - Visual Studio Code was used to structure, create and edit all of my code. It also helped to run the code in the local terminal.
+- [Git](https://git-scm.com/) - Git was used for verison control and to push chanages to my online repo.
+- [GitHub](https://github.com/) - Github was used to track and store my changes.
+- [Google Cloud Platform](https://cloud.google.com/cloud-console) - Google Cloud was used to get access to my spreadsheet which contained my leaderboard.
 
 ### Libraries
 
 #### Python Libraries
-- [OS](https://docs.python.org/3/library/os.html)
-- [Random](https://docs.python.org/3/library/random.html)
-- [Copy](https://docs.python.org/3/library/copy.html#module-copy)
-- [Time](https://docs.python.org/3/library/time.html#module-time)
-- [Gspread](https://docs.gspread.org/en/v5.3.2/)
-- [Tabulate](https://pypi.org/project/tabulate/)
-- [Colorama](https://pypi.org/project/colorama/)
-- [Google Oauth Service Account](https://developers.google.com/identity/protocols/oauth2)
+- [OS](https://docs.python.org/3/library/os.html) - OS was used to clear the terminal so it did not get clogged and so it looked better for the user.
+- [Random](https://docs.python.org/3/library/random.html) - Random was used to make the AI guess random spots. It was also used to put the ships in random places.
+- [Copy](https://docs.python.org/3/library/copy.html#module-copy) - Copy was used to create deepcopys for the AI so everything only needed to be initialised once.
+- [Time](https://docs.python.org/3/library/time.html#module-time) - Time was used to slow the loading of the game, as if the game loads to quickly it looks and feels worse for the user.
+- [Gspread](https://docs.gspread.org/en/v5.3.2/) - GSpread was used to access my spreadsheet for the leaderboard and to add in users to the leaderboard.
+- [Tabulate](https://pypi.org/project/tabulate/) - Tablulate was used to print the leaderboard back to the user in a nice and clean table.
+- [Colorama](https://pypi.org/project/colorama/) -  Colorama was used to add color to the terminal so the experience is more fun for the user.
+- [Google Oauth Service Account](https://developers.google.com/identity/protocols/oauth2) - Google OAuth was used to authorise my access to my spreadsheet, this way no one else could access it without my key.
 
 Battleships is a Python Terminal Game, which runs in the Visual Studio Code terminal
 
