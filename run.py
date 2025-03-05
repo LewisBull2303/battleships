@@ -102,7 +102,6 @@ def main_menu():
                       ship_length, ship_position, orientation, 
                       total_hits, miss, turns_taken) # Call function to start the main game
         elif choice == "2":
-            clear_screen()
             print("\nLoading...")
             time.sleep(1)
             game_instructions() # Show game instructions
@@ -121,6 +120,7 @@ def main_menu():
 
 # Function to show game instructions
 def game_instructions():
+    clear_screen()
     print("""
     Welcome to Battleships!
 
