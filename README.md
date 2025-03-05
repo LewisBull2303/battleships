@@ -64,28 +64,28 @@ My target audience are people aged 7+, who has a love for games and a particular
 ## Technical Design
 
 ### Flow Charts
-
+<details>
  <summary>Main Menu</summary>
 
 ![image](https://github.com/user-attachments/assets/4529bd2f-24bb-49b5-b2a3-f3bfcfdd451b)
 
 </details>
 </br>
-
+<details>
  <summary>Gameplay Loop Flowchart - Player</summary>
 
 ![image](https://github.com/user-attachments/assets/d74fbf42-b237-4f82-b811-7f3f485b217a)
 
 </details>
 </br>
-
+<details>
  <summary>Gameplay Loop Flowchart - CPU</summary>
 
 ![image](https://github.com/user-attachments/assets/f8e973af-2a1d-46d3-9646-bee0e86ded1b)
 
 </details>
 </br>
-
+<details>
  <summary>Leaderboard Upload Flowchart</summary>
 
 ![image](https://github.com/user-attachments/assets/09c51548-26fd-4c55-8cdc-15ed888c29ec)
@@ -94,7 +94,7 @@ My target audience are people aged 7+, who has a love for games and a particular
 </br>
 
 ### Wireframes:
-
+<details>
  <summary>Images</summary>
 
 ![image](https://github.com/user-attachments/assets/e234afe8-93da-47ff-8c03-204c4bb8db13)
