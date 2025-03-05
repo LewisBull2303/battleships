@@ -40,22 +40,22 @@ My target audience are people aged 7+, who has a love for games and a particular
 - A leaderboard that updates when the positions change
 
 ### User Stories
- 1. As a user, I would like to know how to play the game
- 2. As a user, I would like the game to be replayable in the terminal
- 3. As a User, I would like to have a username on the leaderboard
- 4. As a User, I would like to see a leaderboard of the 10 best players
- 5. As a User, I would like it to be clear when I hit an enemy and when I miss
- 6. As a User, I would like it to be clear how many more hits I need to win
- 7. As a User, I would like for there to be a main menu
- 8. As a User, I would like it to be clear the options available to me
+ 1. As a user, I would like to know how to play the game.
+ 2. As a user, I would like the game to be replayable in the terminal.
+ 3. As a User, I would like to have a username on the leaderboard.
+ 4. As a User, I would like to see a leaderboard of the 10 best players.
+ 5. As a User, I would like it to be clear when I hit an enemy and when I miss.
+ 6. As a User, I would like it to be clear how many more hits I need to win.
+ 7. As a User, I would like for there to be a main menu.
+ 8. As a User, I would like it to be clear the options available to me.
 
 ### Site Owner Stories
-9. As a site owner, I would like the game to be fun and enjoyable
-10. As a site owner, I would like the game to be challenging and have varying degrees of challenge
-11. As a site owner, I would like the game to feel like an arcade game
-12. As a site owner, I would like a leaderboard and for the users to be able to see the leaderboard
-13. As a site owner, I would like the game to be consistant in design
-14. As a Site owner, I would like my users data to be stored in a google sheet
+9. As a site owner, I would like the game to be fun and enjoyable.
+10. As a site owner, I would like the game to be challenging and have varying degrees of challenge.
+11. As a site owner, I would like the game to feel like an arcade game.
+12. As a site owner, I would like a leaderboard and for the users to be able to see the leaderboard.
+13. As a site owner, I would like the game to be consistant in design.
+14. As a Site owner, I would like my users data to be stored in a google sheet.
 
 ## Technical Design
 
@@ -106,10 +106,26 @@ Leaderboard Upload Flowchart:
 ## Features
 
 ### Main Menu
-- A fun main menu which is reminiscent of an old style arace game
-- Clearly shows the player all of the choices available to them
-- Has a flashy and bold ASCII art title to draw the player in
+- A fun main menu which is reminiscent of an old style arace game.
+- Clearly shows the player all of the choices available to them.
+- Has a flashy and bold ASCII art title to draw the player in.
 - User Stories answered: 
+
+### Game Rules/How to play
+- Clearly displays the rules and how to play to the user.
+- Allows the user to return back to the main menu whenever they wish.
+- User Stories answered:
+
+### Grid Select/Difficulty Select
+- Gives the user multiple options on how large they want the grid
+- Allows the user to select any size they wish which all corresponds to a specific difficulty
+- User Stories Answered:
+
+### Leaderboard
+- Clearly displays to the user the 10 best players usernames and their individual scores
+- Allows the user to return back to the home page whenever they wish
+- User Stories Answered:
+
 
 Battleships is a Python Terminal Game, which runs in the Visual Studio Code terminal
 
