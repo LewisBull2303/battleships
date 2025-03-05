@@ -39,6 +39,14 @@ My target audience are people aged 7+, who has a love for games and a particular
 - Straight forward instructions
 - A leaderboard that updates when the positions change
 
+## Technical Design
+
+### Flow Charts
+
+Main Menu:
+![image](https://github.com/user-attachments/assets/4529bd2f-24bb-49b5-b2a3-f3bfcfdd451b)
+
+
 ## Technologies Used:
 
 ### Languages
@@ -62,6 +70,8 @@ My target audience are people aged 7+, who has a love for games and a particular
 - [Tabulate](https://pypi.org/project/tabulate/) - Tablulate was used to print the leaderboard back to the user in a nice and clean table.
 - [Colorama](https://pypi.org/project/colorama/) -  Colorama was used to add color to the terminal so the experience is more fun for the user.
 - [Google Oauth Service Account](https://developers.google.com/identity/protocols/oauth2) - Google OAuth was used to authorise my access to my spreadsheet, this way no one else could access it without my key.
+
+
 
 Battleships is a Python Terminal Game, which runs in the Visual Studio Code terminal
 
