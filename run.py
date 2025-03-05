@@ -28,26 +28,14 @@ SHIPS = [5, 4, 3, 3, 2] # Sizes of the ships
 SEA = [] # Empty list for the sea (grid)
 
 orientation = -1 # Stores the ship's hit orientation
-total_hits = {
-    "Carrier": 0,
-    "Battleship": 0,
-    "Cruiser":0,
-    "Submarine": 0,
-    "Destroyer": 0
-} # Stores the ship number every time the bot hits a ship
+total_hits = [] # Stores the ship number every time the bot hits a ship
 miss = 1 # Stores whether the last AI shot was a miss
 turns_taken = 0 #Stores the number of turns taken for the leaderboard
 username = "PLACEHOLDER"
 
 player_ship_lives = 17 # The amount of lives for the player (equal to the ships)
 ship_position = [] 
-ship_length = {
-    "Carrier": 5,
-    "Battleship": 4,
-    "Cruiser": 3,
-    "Submarine": 3,
-    "Destroyer": 2
-}
+ship_length = []
 
 player_radar = [] # The radar board for the player
 player_board = [] # The board representing player ships' positions
@@ -334,14 +322,10 @@ def ship_number(r,c):
     return SHIPS[number_board[r][c]]  # Otherwise, return the size of the ship at the position
 
 # Check if a ship is sunk based on total hits
-def ship_sunk(total_hits, ship_length):
-    sunk_ships = {}  # Dictionary to track if each ship is sunk
-    for ship, hits in total_hits.items():
-        if hits >= ship_length.get(ship, 0):  # Check if hits match ship length
-            sunk_ships[ship] = True
-        else:
-            sunk_ships[ship] = False
-    return sunk_ships  # Returns a dictionary indicating which ships are sunk
+def ship_sunk():
+    if total_hits.count(total_hits[0]) == ship_length[0]:  # If all parts of the ship are hit
+        return 1  # The ship is sunk
+    return 0  # The ship is not sunk yet
 
 # Init the Boards (deep copy of SEA grid)
 player_radar = copy.deepcopy(SEA)  # Radar for player (to track guesses)
@@ -426,8 +410,7 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
                 orientation = -1  # Reset the ship's orientation
                 player_board[ai_row_guess][ai_col_guess] = HIT  # Mark the hit on the player's board
                 ai_radar[ai_row_guess][ai_col_guess] = HIT  # Mark the hit on the AI's radar
-                ship_type = number_board[ai_row_guess][ai_col_guess]
-                total_hits[ship_type] += 1
+                total_hits.append(number_board[ai_row_guess][ai_col_guess])  # Track the hit
                 print("\nAttention Captain! You've been Hit!")
             else:  # If the AI misses, mark the miss on the board
                 miss = 1
@@ -473,12 +456,11 @@ def main_game(player_ship_lives, player_board, player_radar, ai_ship_lives, ai_b
             if not is_ocean(ai_row_guess, ai_col_guess, player_board):  # If AI hits a ship
                 player_board[ai_row_guess][ai_col_guess] = HIT  # Mark the hit on player's board
                 ai_radar[ai_row_guess][ai_col_guess] = HIT  # Mark the hit on AI's radar
-                ship_type = number_board[ai_row_guess][ai_col_guess]
-                total_hits[ship_type] += 1
+                total_hits.append(number_board[ai_row_guess][ai_col_guess])  # Track the hit
                 player_ship_lives -= 1  # Decrease the player's remaining ship lives
                 
                 # Check if the AI has found the orientation of the ship
-                if total_hits[ship_type] == ship_length[ship_type]:
+                if total_hits.count(total_hits[0]) == 2 and ship_number(ai_row_guess, ai_col_guess) == ship_number(ship_position[0], ship_position[1]):
                     if ai_col_guess != ship_position[1]:
                         orientation = 0
                     else:
