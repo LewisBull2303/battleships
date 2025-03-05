@@ -102,9 +102,9 @@ def main_menu():
                       ship_length, ship_position, orientation, 
                       total_hits, miss, turns_taken) # Call function to start the main game
         elif choice == "2":
+            clear_screen()
             print("\nLoading...")
             time.sleep(1)
-            clear_screen()
             game_instructions() # Show game instructions
         elif choice == "3":
             print("\nLoading...")
