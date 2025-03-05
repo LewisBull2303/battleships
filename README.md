@@ -85,7 +85,13 @@ Leaderboard Upload Flowchart:
 - [Colorama](https://pypi.org/project/colorama/) -  Colorama was used to add color to the terminal so the experience is more fun for the user.
 - [Google Oauth Service Account](https://developers.google.com/identity/protocols/oauth2) - Google OAuth was used to authorise my access to my spreadsheet, this way no one else could access it without my key.
 
+## Features
 
+### Main Menu
+- A fun main menu which is reminiscent of an old style arace game
+- Clearly shows the player all of the choices available to them
+- Has a flashy and bold ASCII art title to draw the player in
+- User Stories answered: 
 
 Battleships is a Python Terminal Game, which runs in the Visual Studio Code terminal
 
